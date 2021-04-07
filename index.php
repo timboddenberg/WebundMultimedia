@@ -12,6 +12,12 @@
     </head>
 
     <body>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">Left</button>
+            <button type="button" class="btn btn-default">Middle</button>
+            <button type="button" class="btn btn-default">Right</button>
+        </div>
         <script src="Js/JQuery/JQuery.min.js"></script>
         <script src="Js/Bootstrap/bootstrap.min.js"></script>
     </body>
