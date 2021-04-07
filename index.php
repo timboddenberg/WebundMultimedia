@@ -7,7 +7,7 @@
         <link href="Css/Bootstrap/bootstrap-theme.min.css" rel="stylesheet"/>
 
         <title>
-            Mike der Lachs
+            Tim der Lachs
         </title>
     </head>
 
