@@ -4,6 +4,6 @@ class IndexController
 {
     function loadIndex()
     {
-        var_dump("penis");
+        return require_once __DIR__ . "\..\Views\Index.html";
     }
 }
