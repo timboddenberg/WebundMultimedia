@@ -1,0 +1,78 @@
+html
+{
+    background: url("/WebundMultimedia/Images/background.jpg") center center fixed;
+
+    /*
+    background: #1C1C1C;
+     */
+}
+
+body
+{
+    background: transparent;
+}
+
+.navBar-wrapper
+{
+    height: 80px;
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+}
+
+.glyphicon-menu-hamburger
+{
+    font-size: 30px;
+    color: #72A7A5;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+.burger-Menu-Text
+{
+    float:left;
+    color: #E4EFF0;
+    margin-top: 25px;
+    margin-left: 14px;
+    font-weight: bold;
+}
+
+.social-media-buttons
+{
+    position: fixed;
+    right: 25px;
+    top: 20px;
+    float: right;
+    color:white;
+}
+
+.social-media-buttons svg
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container
+{
+    margin-top: 20px;
+}
+
+.brand-Headline-Index
+{
+    color: #72A7A5;
+    text-align: center;
+    font-size: 126px;
+    margin-top: 47px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.brand-Headline-Index-Subtext
+{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-family: monospace;
+}
+

@@ -1,9 +1,13 @@
 <?php
 
-class IndexController
+require_once __DIR__ . "\AbstractController.php";
+
+class IndexController extends AbstractController
 {
     function loadIndex()
     {
-        return require_once __DIR__ . "\..\Views\Index.html";
+        $this->render("Index/Index.tpl", [
+            "message" => "Schalke ist Scheiße. !!"
+        ]);
     }
 }
