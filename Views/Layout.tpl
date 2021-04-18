@@ -16,7 +16,7 @@
     <div class="navBar-wrapper">
         <div class="navbar-Division">
             <!-- left side -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify glyphicon-menu-hamburger" viewBox="0 0 16 16">
+            <svg id="openOverlay" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify glyphicon-menu-hamburger" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
             </svg>
             <div class="burger-Menu-Text">
@@ -47,6 +47,17 @@
 
 <script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
 <script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
+
+<script>
+    $("#openOverlay").click(function (){
+        console.log(1);
+        $(".menuOverlay").css("display","block");
+    });
+</script>
+
+<aside class="menuOverlay">
+
+</aside>
 
 <div class="container">
     {block body}
