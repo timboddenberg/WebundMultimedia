@@ -1,7 +1,7 @@
 html
 {
     background: url("/WebundMultimedia/Images/background.jpg") center center fixed;
-
+    height: 100%;
     /*
     background: #1C1C1C;
      */
@@ -10,6 +10,7 @@ html
 body
 {
     background: transparent;
+    height: 100%;
 }
 
 .navBar-wrapper
@@ -78,11 +79,18 @@ body
 
 #sliderWrapper
 {
+    margin-top: 60px;
     width: 100%;
     text-align: center;
 }
 
-.imageSlideWrapper
+.menuOverlay
 {
-    display: inline-block;
+    position: fixed;
+    width: 20%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: white;
+    display: none;
 }
