@@ -76,3 +76,13 @@ body
     font-family: monospace;
 }
 
+#sliderWrapper
+{
+    width: 100%;
+    text-align: center;
+}
+
+.imageSlideWrapper
+{
+    display: inline-block;
+}
