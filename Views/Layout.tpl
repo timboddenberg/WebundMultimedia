@@ -45,13 +45,14 @@
     </div>
 </nav>
 
+<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
+<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
+
 <div class="container">
     {block body}
 
     {/block}
 </div>
 
-<script src="WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
-<script src="WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
