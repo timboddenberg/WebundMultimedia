@@ -6,7 +6,7 @@ class IndexController extends AbstractController
 {
     function loadIndex()
     {
-        $this->display("Layout.tpl");
-        $this->database->query("SELECT baslasdkasjdkadnjasdn");
+        $this->templateEngine->addVariable("test", "Tim");
+        $this->templateEngine->display("Index\Index.tpl");
     }
 }

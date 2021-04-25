@@ -60,9 +60,7 @@
 </aside>
 
 <div class="container">
-    {block body}
-
-    {/block}
+    {body}
 </div>
 
 </body>
