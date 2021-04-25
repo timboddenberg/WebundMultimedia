@@ -11,6 +11,9 @@ body
 {
     background: transparent;
     height: 100%;
+    width:100%;
+    position: absolute;
+    top:0;
 }
 
 .navBar-wrapper
@@ -84,8 +87,7 @@ body
     text-align: center;
 }
 
-.menuOverlay
-{
+.menuOverlay {
     position: fixed;
     width: 20%;
     left: 0;

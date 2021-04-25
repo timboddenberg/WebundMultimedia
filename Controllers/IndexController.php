@@ -6,8 +6,7 @@ class IndexController extends AbstractController
 {
     function loadIndex()
     {
-        $this->render("Index/Index.tpl", [
-            "message" => "Schalke ist Scheiße. !!"
-        ]);
+        $this->display("Layout.tpl");
+        $this->database->query("SELECT baslasdkasjdkadnjasdn");
     }
 }

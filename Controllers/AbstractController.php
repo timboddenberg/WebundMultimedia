@@ -1,26 +1,22 @@
 <?php
 
-require_once __DIR__ . "\..\TemplateEngine\ProjectTemplate.php";
+require_once __DIR__ . "\..\Engine\TemplateEngine.php";
+require_once __DIR__ . "\..\Engine\DatabaseEngine.php";
 
 class AbstractController
 {
-    private Smarty $smarty;
+    private TemplateEngine $templateEngine;
+
+    protected mysqli $database;
 
     public function __construct()
     {
-        $this->smarty = new ProjectTemplate();
+        $this->templateEngine = new TemplateEngine();
+        $this->database = DatabaseEngine::getConnection();
     }
 
-    public function render(string $template, array $variables = [])
+    protected function display($template)
     {
-        foreach ($variables as $key => $variable)
-        {
-            $this->smarty->assign($key, $variable);
-        }
-
-        $this->smarty->display($template);
+        $this->templateEngine->display($template);
     }
-
-
-
 }
