@@ -10,5 +10,15 @@ return [
         'class' => 'SearchController',
         'action' => 'search',
         'route' => '/search'
+    ],
+    'create' => [
+        'class' => 'CreatorController',
+        'action' => 'loadCreator',
+        'route' => '/create'
+    ],
+    'createUser' => [
+        'class' => 'CreatorController',
+        'action' => 'create',
+        'route' => '/create/user'
     ]
 ];

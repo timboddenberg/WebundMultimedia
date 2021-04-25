@@ -13,5 +13,6 @@ class AbstractController
     {
         $this->templateEngine = new TemplateEngine();
         $this->database = DatabaseEngine::getConnection();
+
     }
 }
