@@ -12,12 +12,12 @@ return [
         'route' => '/search'
     ],
     'create' => [
-        'class' => 'CreatorController',
+        'class' => 'AccountController',
         'action' => 'loadCreator',
         'route' => '/create'
     ],
     'createUser' => [
-        'class' => 'CreatorController',
+        'class' => 'AccountController',
         'action' => 'create',
         'route' => '/create/user'
     ]

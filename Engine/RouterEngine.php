@@ -15,6 +15,8 @@ class RouterEngine
 
         $requestRoute = str_replace("/WebundMultimedia","",$requestRoute);
 
+        $requestRoute = preg_replace("#\?.*#", "",$requestRoute);
+
         foreach ($this->routes as $route) {
 
             if ($route['route'] !== $requestRoute) {
