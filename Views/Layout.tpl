@@ -16,12 +16,22 @@
     <div class="navBar-wrapper">
         <div class="navbar-Division">
             <!-- left side -->
-            <svg id="openOverlay" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify glyphicon-menu-hamburger" viewBox="0 0 16 16">
+            <svg id="openOverlay" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-justify glyphicon-menu-hamburger" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
             </svg>
             <div class="burger-Menu-Text">
                 <span>MENU</span>
             </div>
+
+            <div class="topBarSeperator"></div>
+
+            <a href="/WebundMultimedia/user/login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle dropdown-toggle accountSVG" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </a>
+            <div class="userGreeting">{$usernameGreetingString}</div>
         </div>
 
         <!-- social media buttons -->
@@ -50,7 +60,6 @@
 
 <script>
     $("#openOverlay").click(function (){
-        console.log(1);
         $(".menuOverlay").css("display","block");
     });
 </script>
