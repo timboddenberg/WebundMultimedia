@@ -11,6 +11,7 @@ class RouterEngine
 
     public function handleRequest()
     {
+
         $requestRoute = $_SERVER['REQUEST_URI'];
 
         $requestRoute = str_replace("/WebundMultimedia","",$requestRoute);
