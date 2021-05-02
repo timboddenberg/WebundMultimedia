@@ -36,10 +36,10 @@ return [
         'action' => 'displayProduct',
         'route' => '/product'
     ],
-    'displayAddProduct' => [
+    'displayProductAdministration' => [
         'class' => 'ProductController',
-        'action' => 'displayAddProduct',
-        'route' => '/product/displayAdd'
+        'action' => 'displayProductAdministration',
+        'route' => '/product/administration'
     ],
     'addProduct' => [
         'class' => 'ProductController',
