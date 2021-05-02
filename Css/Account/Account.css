@@ -51,3 +51,9 @@
     color: white;
     display: inline-block;
 }
+
+.LogoutMessage
+{
+    color:white;
+    text-align: center;
+}

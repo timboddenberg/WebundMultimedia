@@ -31,6 +31,16 @@ return [
         'action' => 'performLogin',
         'route' => '/user/login/performlogin'
     ],
+    'logout' => [
+    'class' => 'AccountController',
+    'action' => 'displayLogout',
+    'route' => '/user/logout'
+    ],
+    'performLogout' => [
+        'class' => 'AccountController',
+        'action' => 'performLogout',
+        'route' => '/user/logout/performLogout'
+    ],
     'displayProduct' => [
         'class' => 'ProductController',
         'action' => 'displayProduct',
