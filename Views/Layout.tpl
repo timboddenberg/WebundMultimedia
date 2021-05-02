@@ -65,9 +65,17 @@
 </script>
 
 <aside class="menuOverlay">
-    <a href="/WebundMultimedia/user/logout/performLogout">Logout</a>
+    <svg id="closeOverlay" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-justify glyphicon-menu-hamburger" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+    <a id="logOutButton" href="/WebundMultimedia/user/logout/performLogout">Logout</a>
 </aside>
 
+<script>
+    $("#closeOverlay").click(function (){
+        $(".menuOverlay").css("display","none");
+    });
+</script>
 <div class="container">
     {body}
 </div>
