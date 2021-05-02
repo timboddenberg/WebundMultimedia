@@ -17,8 +17,7 @@ class ProductController extends AbstractController{
         $amount = $this->request->POST("amount");
         $price = $this->request->POST("price");
 
-        var_dump($price);die;
-        $query = "INSERT INTO produkte VALUES('$id','$name', '$price', '$amount','','$image','','','','')";
+        $query = "INSERT INTO produkte VALUES('$id','$name', '$price', '$amount','','$image','','','')";
         $this->database->query($query);
     }
 

@@ -6,3 +6,8 @@
     <input type="text" name="amount" />
     <button type="submit"></button>
 </form>
+<br>
+<form method="post" action="/WebundMultimedia/product/delete">
+    <input type="number" name="id" placeholder="ID zum löschen">
+    <button type="submit"></button>
+</form>

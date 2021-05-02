@@ -45,6 +45,12 @@ return [
         'class' => 'ProductController',
         'action' => 'addProduct',
         'route' => '/product/add'
+    ],
+    'deleteProduct' =>[
+        'class' => 'ProductController',
+        'action' => 'deleteProduct',
+        'route' => '/product/delete'
     ]
+
 
 ];
