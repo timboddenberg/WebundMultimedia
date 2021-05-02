@@ -15,7 +15,25 @@ class AccountController extends AbstractController
 
         $this->templateEngine->display("\Account\Login.tpl");
     }
+    public function displayLogout()
+    {
+        if ($this->errorHandler->errorOccurred())
+            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
+        else
+            $this->templateEngine->addVariable("accountErrorMessage","");
+        $this->templateEngine->display("\Account\Logout.tpl");
+    }
+    public function performLogout()
+    {
+        $this->request->setSESSION("user", serialize(new User("")));
+        if ($this->errorHandler->errorOccurred())
+            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
+        else
+            $this->templateEngine->addVariable("accountErrorMessage","");
+        header("Location: http://Localhost/WebundMultimedia/user/logout");
 
+        die;
+    }
     public function displayRegister()
     {
         if ($this->errorHandler->errorOccurred())
@@ -38,6 +56,7 @@ class AccountController extends AbstractController
             {
                 $user = new User($row[1]);
                 $user->setUserID($row[0]);
+                $user->setFirstName($row[3]);
 
                 $this->request->setSESSION("user",serialize($user));
 

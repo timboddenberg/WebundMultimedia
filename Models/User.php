@@ -4,17 +4,22 @@ class User
 {
     private string $mail;
     private string $name;
+    private string $firstname;
     private int $userID;
 
     public function __construct(string $email)
     {
         $this->mail = $email;
-        $this->name = explode("@", $email)[0];
+        $this->firstname ="";
     }
 
     public function setUserID(int $id)
     {
         $this->userID = $id;
+    }
+    public function setFirstName(String $fname)
+    {
+        $this->firstname = $fname;
     }
 
     public function getUsername()
@@ -22,12 +27,17 @@ class User
         return $this->name;
     }
 
+    public function getFirstName()
+    {
+        return $this->firstname;
+    }
+
     public function getUsernameGreetingString()
     {
-        if ($this->mail == "")
-            return "";
+        if ($this->firstname == "")
+            return "Hallo!";
         else
-            return "Hallo, " . $this->name;
+            return "Hallo, " . $this->firstname;
     }
 
     public function getEmail()

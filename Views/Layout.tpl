@@ -65,7 +65,7 @@
 </script>
 
 <aside class="menuOverlay">
-
+    <a href="/WebundMultimedia/user/logout/performLogout">Logout</a>
 </aside>
 
 <div class="container">
