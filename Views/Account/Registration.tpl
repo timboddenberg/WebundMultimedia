@@ -12,6 +12,8 @@
         <span style="color:white">{$accountErrorMessage}</span><br>
         <input type="email" name="username" placeholder="E-Mail Adresse" required><br>
         <input type="password" name="password" placeholder="Passwort" required><br>
+        <input type="text" name="firstname" placeholder="Vorname" required><br>
+        <input type="text" name="lastname" placeholder="Nachname" required><br>
         <input type="submit" value="Registrieren"><br>
     </form>
 </div>

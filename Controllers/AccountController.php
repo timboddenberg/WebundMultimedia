@@ -65,11 +65,12 @@ class AccountController extends AbstractController
             header("Location: http://Localhost/WebundMultimedia/user/register");
             die;
         }
-
+        $firstname = $this->request->POST("firstname");
+        $lastname = $this->request->POST("lastname");
         $userName = $this->request->POST("username");
         $password = $this->request->POST("password");
 
-        $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . "')";
+        $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . " ', '$firstname', '$lastname')";
         $this->database->query($query);
 
         $this->errorHandler->setErrorMessage("");
