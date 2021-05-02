@@ -11,14 +11,24 @@ return [
         'action' => 'search',
         'route' => '/search'
     ],
-    'create' => [
+    'displayRegister' => [
         'class' => 'AccountController',
-        'action' => 'loadCreator',
-        'route' => '/create'
+        'action' => 'displayRegister',
+        'route' => '/user/register'
     ],
-    'createUser' => [
+    'registerUser' => [
         'class' => 'AccountController',
-        'action' => 'create',
-        'route' => '/create/user'
+        'action' => 'register',
+        'route' => '/user/performregister'
+    ],
+    'login' => [
+        'class' => 'AccountController',
+        'action' => 'displayLogin',
+        'route' => '/user/login'
+    ],
+    'performLogin' => [
+        'class' => 'AccountController',
+        'action' => 'performLogin',
+        'route' => '/user/login/performlogin'
     ]
 ];

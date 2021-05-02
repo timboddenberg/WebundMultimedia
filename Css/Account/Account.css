@@ -2,7 +2,6 @@
 {
     text-align: center;
     width: 100%;
-    margin-top: 250px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -16,9 +15,9 @@
 {
     display: inline-block;
     height: 40px;
-    background: transparent;
+    background: transparent!important;
     color: white;
-    border: 3px solid rgba(255,255,255,0.8);
+    border: 3px solid #72A7A5;
     margin-bottom: 15px;
     border-radius: 5px;
     width: 300px;
@@ -27,4 +26,28 @@
 .registrationForm form input:focus
 {
     outline: none;
+}
+
+.registerLink
+{
+    color: white;
+}
+
+.AccountingIconWrapper
+{
+    text-align: center;
+    width: 100%;
+    margin-top: 140px;
+}
+
+.accountAddIcon
+{
+    color: white;
+    display: inline-block;
+}
+
+.accountIcon
+{
+    color: white;
+    display: inline-block;
 }

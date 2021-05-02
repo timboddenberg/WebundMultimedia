@@ -2,7 +2,7 @@
     -Firmenname-
 </div>
 <div class="brand-Headline-Index-Subtext">
-    Find your individual masterpiece {$test}
+    Find your individual masterpiece
 </div>
 
 <div id="sliderWrapper">
@@ -51,12 +51,12 @@
                         var slideOutRight = setInterval( function (){
                             animateSlide(slider[childrenIndex],pixel);
                             pixel++;
-                            if (pixel > 200)
+                            if (pixel > 100)
                             {
                                 $(slider[childrenIndex]).css("opacity",opacity);
                                 opacity -= 0.01;
                             }
-                            if (pixel > 300)
+                            if (pixel > 200)
                             {
                                 window.clearInterval(slideOutRight);
                                 $(slider[childrenIndex]).css("display","none");

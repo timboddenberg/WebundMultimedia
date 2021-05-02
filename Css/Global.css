@@ -43,6 +43,23 @@ body
     font-weight: bold;
 }
 
+.userGreeting
+{
+    float:left;
+    color: #E4EFF0;
+    margin-top: 25px;
+    margin-left: 14px;
+    font-weight: bold;
+}
+
+.topBarSeperator
+{
+    float: left;
+    height: 80px;
+    margin-left: 45px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
 .social-media-buttons
 {
     position: fixed;
@@ -95,4 +112,13 @@ body
     height: 100%;
     background: white;
     display: none;
+}
+
+.accountSVG
+{
+    color: #72A7A5;
+    fill: white;
+    float: left;
+    margin-top: 20px;
+    margin-left: 40px;
 }

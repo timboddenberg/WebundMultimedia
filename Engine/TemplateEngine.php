@@ -17,8 +17,8 @@ class TemplateEngine
     public function display(string $template)
     {
         $this->fetchTemplateContent($template);
-        $this->replaceVariablesWithValues();
         $this->replaceBodyContent();
+        $this->replaceVariablesWithValues();
 
         echo $this->compiledHtml;
     }
@@ -46,7 +46,7 @@ class TemplateEngine
         if (empty($this->variables)) return;
 
         foreach ($this->variables as $key => $value) {
-            $this->templateContent = str_replace('{$' . $key . '}',$this->variables[$key], $this->templateContent);
+            $this->compiledHtml = str_replace('{$' . $key . '}',$this->variables[$key], $this->compiledHtml);
         }
     }
 
