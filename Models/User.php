@@ -49,7 +49,6 @@ class User
         $salt2 = "pg!@";
 
         $formPassword = hash('ripemd128', "$salt1$formPassword$salt2");
-
-        return $formPassword == $password;
+        return $formPassword == trim($password);
     }
 }

@@ -30,7 +30,6 @@ class AccountController extends AbstractController
     {
         $query = "SELECT * FROM benutzer WHERE Benutzername = '" . $_POST["username"] . "'";
         $result = $this->database->query($query);
-
         if ($result->num_rows > 0)
         {
             $row = $result->fetch_row();
