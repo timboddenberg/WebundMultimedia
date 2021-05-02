@@ -30,5 +30,21 @@ return [
         'class' => 'AccountController',
         'action' => 'performLogin',
         'route' => '/user/login/performlogin'
+    ],
+    'displayProduct' => [
+        'class' => 'ProductController',
+        'action' => 'displayProduct',
+        'route' => '/product'
+    ],
+    'displayAddProduct' => [
+        'class' => 'ProductController',
+        'action' => 'displayAddProduct',
+        'route' => '/product/displayAdd'
+    ],
+    'addProduct' => [
+        'class' => 'ProductController',
+        'action' => 'addProduct',
+        'route' => '/product/add'
     ]
+
 ];

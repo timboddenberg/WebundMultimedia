@@ -27,7 +27,6 @@ class AbstractController
         $this->errorHandler = new ErrorMessages();
 
         $this->generateUser();
-        $this->setUpErrorMessages();
     }
 
     private function generateUser()
@@ -40,9 +39,4 @@ class AbstractController
         $this->templateEngine->addVariable("usernameGreetingString", $this->user->getUsernameGreetingString());
     }
 
-    private function setUpErrorMessages()
-    {
-
-
-    }
 }
