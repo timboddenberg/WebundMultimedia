@@ -19,12 +19,16 @@ class ProductController extends AbstractController{
 
         $query = "INSERT INTO produkte VALUES('$id','$name', '$price', '$amount','','$image','','','')";
         $this->database->query($query);
+        $this->templateEngine->display("/Product/AddProduct.tpl");
     }
 
     public function deleteProduct(){
         $id = $this->request->POST("id");
         $query = "DELETE FROM produkte WHERE id = $id";
         $this->database->query($query);
+        $this->templateEngine->display("/Product/AddProduct.tpl");
+
+
     }
 
 }
