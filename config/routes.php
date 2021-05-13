@@ -71,6 +71,4 @@ return [
         'action' => 'performRemove',
         'route' => '/user/remove/perform'
     ]
-
-
 ];

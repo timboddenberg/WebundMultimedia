@@ -3,13 +3,15 @@
 
 class Product
 {
+    private int $id;
     private String $name;
     private float $price;
     private String $image;
     private int $amount;
 
-    public function __construct(string $name, float $price, string $image, int $amount)
+    public function __construct(int $id, string $name, float $price, string $image, int $amount)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
@@ -60,8 +62,15 @@ class Product
         $this->amount = $amount;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
 
 
 }
