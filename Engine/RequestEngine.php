@@ -26,6 +26,14 @@ class RequestEngine
             return $_POST[$key];
     }
 
+    public function FILE(string $key)
+    {
+        if (!key_exists($key, $_FILES))
+            return "";
+        else
+            return $_FILES[$key];
+    }
+
     public function setSESSION(string $key, string $value)
     {
         $_SESSION[$key] = $value;

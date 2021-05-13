@@ -61,6 +61,4 @@ return [
         'action' => 'deleteProduct',
         'route' => '/product/delete'
     ]
-
-
 ];
