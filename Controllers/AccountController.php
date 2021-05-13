@@ -6,6 +6,9 @@ require_once __DIR__ . "\..\Models\User.php";
 
 class AccountController extends AbstractController
 {
+    public function displayUserRemover(){
+        $this->templateEngine->display("\Account\UserRemover.tpl");
+    }
     public function displayLogin()
     {
         if ($this->errorHandler->errorOccurred())
@@ -108,5 +111,15 @@ class AccountController extends AbstractController
         }
         else
             return true;
+    }
+
+    /*
+     * This method removes a user from the database
+     */
+    public function performRemove(){
+        $user = $this->request->POST("user");
+        $query = "DELETE FROM benutzer WHERE Benutzername = '$user'";
+        $this->database->query($query);
+        $this->templateEngine->display("\Account\UserRemover.tpl");
     }
 }

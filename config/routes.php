@@ -60,5 +60,15 @@ return [
         'class' => 'ProductController',
         'action' => 'deleteProduct',
         'route' => '/product/delete'
+    ],
+    'removeUser'=>[
+        'class' => 'AccountController',
+        'action' => 'displayUserRemover',
+        'route' => '/user/remove'
+    ],
+    'performUserRemove'=>[
+        'class' => 'AccountController',
+        'action' => 'performRemove',
+        'route' => '/user/remove/perform'
     ]
 ];
