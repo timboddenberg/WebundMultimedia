@@ -82,6 +82,15 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Benutzer
+                        <div class="listButtons">
+                            <a style="background-color: #72A7A5" href="/WebundMultimedia" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Startseite</a>
+                        </div>
+                        <div class="listButtons">
+                            <a style="background-color: #72A7A5" href="/WebundMultimedia/user/remove" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Account verwalten</a>
+                        </div>
+                        <div class="listButtons">
+                            <a style="background-color: #72A7A5" href="/WebundMultimedia/user/logout/performLogout" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Ausloggen</a>
+                        </div>
                     </div>
                 </div>
             </div>

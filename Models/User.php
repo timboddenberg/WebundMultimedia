@@ -21,6 +21,9 @@ class User
     {
         $this->firstname = $fname;
     }
+    public function getUserID(){
+        return $this->userID;
+    }
 
     public function getUsername()
     {
