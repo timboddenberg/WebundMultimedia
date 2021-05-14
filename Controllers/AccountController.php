@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once __DIR__ . "\AbstractController.php";
 require_once __DIR__ . "\..\Models\User.php";

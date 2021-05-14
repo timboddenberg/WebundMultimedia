@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require_once __DIR__ . "\AbstractController.php";
 
 class IndexController extends AbstractController
