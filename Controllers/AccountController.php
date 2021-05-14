@@ -6,8 +6,20 @@ require_once __DIR__ . "\..\Models\User.php";
 
 class AccountController extends AbstractController
 {
+    /*
+     * the methods checks if the user is logged in:
+     * if yes: the user can delete his account
+     * if no: the user has to log in
+     */
     public function displayUserRemover(){
-        $this->templateEngine->display("\Account\UserRemover.tpl");
+        $userId = $_SESSION['userID'];
+        if($userId != ''){
+            $this->templateEngine->display("\Account\UserRemover.tpl");
+        }
+        else{
+            header("Location: http://Localhost/WebundMultimedia/user/login");
+        }
+
     }
     public function displayLogin()
     {
@@ -26,16 +38,18 @@ class AccountController extends AbstractController
             $this->templateEngine->addVariable("accountErrorMessage","");
         $this->templateEngine->display("\Account\Logout.tpl");
     }
+    /*
+     * Method runs the logout and clears user and userID keys in the session
+     */
     public function performLogout()
     {
         $this->request->setSESSION("user", serialize(new User("")));
+        $this->request->setSESSION('userID','');
         if ($this->errorHandler->errorOccurred())
             $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
         else
             $this->templateEngine->addVariable("accountErrorMessage","");
         header("Location: http://Localhost/WebundMultimedia/user/logout");
-
-        die;
     }
     public function displayRegister()
     {
@@ -46,6 +60,7 @@ class AccountController extends AbstractController
 
         $this->templateEngine->display("\Account\Registration.tpl");
     }
+
 
     public function performLogin()
     {
@@ -62,6 +77,7 @@ class AccountController extends AbstractController
                 $user->setFirstName($row[3]);
 
                 $this->request->setSESSION("user",serialize($user));
+                $this->request->setSESSION('userID', $row[0]);
 
                 $this->errorHandler->setErrorMessage("");
                 header("Location: http://Localhost/WebundMultimedia/");
@@ -117,9 +133,12 @@ class AccountController extends AbstractController
      * This method removes a user from the database
      */
     public function performRemove(){
-        $user = $this->request->POST("user");
-        $query = "DELETE FROM benutzer WHERE Benutzername = '$user'";
+        $password = $this->request->POST("password");
+        $username = $this->request->SESSION('userID');
+        $query = "DELETE FROM benutzer WHERE Passwort = '" . User::EncryptPassword($password) . " ' AND Id = '$username'";
         $this->database->query($query);
-        $this->templateEngine->display("\Account\UserRemover.tpl");
+        $this->request->setSESSION("user", serialize(new User("")));
+        $this->request->setSESSION('userID','');
+        header("Location: http://Localhost/WebundMultimedia/");
     }
 }
