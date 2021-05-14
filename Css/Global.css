@@ -183,3 +183,13 @@ body
 {
     background-color: red;
 }
+.listButtons{
+    margin: 10px;
+}
+.listButtons a{
+    width: 60%;
+}
+.listButtons a:hover{
+    width: 62%;
+}
+
