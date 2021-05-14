@@ -1,0 +1,3 @@
+{$Name}
+
+<img src="{$BildURL}"/>

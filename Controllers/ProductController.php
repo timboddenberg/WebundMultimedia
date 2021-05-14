@@ -1,10 +1,36 @@
 <?php
 
-session_start();
 require_once __DIR__ . "\AbstractController.php";
 require_once __DIR__ . "\..\Models\Product.php";
 
 class ProductController extends AbstractController{
+
+    public function displayProduct()
+    {
+        $productId = $this->request->SESSION("productId");
+
+        if (! empty($productId))
+        {
+            $product = $this->getProductFromDatabase($productId);
+            $this->assignProductVariables($product);
+            $this->templateEngine->display("/Product/Product.tpl");
+        }
+    }
+
+    private function assignProductVariables(array $product)
+    {
+        foreach ($product as $key => $value)
+        {
+            $this->templateEngine->addVariable($key, $value);
+        }
+    }
+
+    private function getProductFromDatabase(string $id)
+    {
+        $result = $this->database->query("SELECT * FROM produkte WHERE Id = " . $id);
+
+        return $result->fetch_assoc();
+    }
 
     public function displayProductAdministration()
     {
