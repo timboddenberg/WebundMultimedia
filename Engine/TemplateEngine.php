@@ -5,7 +5,7 @@ class TemplateEngine
     private string $templateContent;
     private string $layoutTemplateContent;
 
-    private string $compiledHtml;
+    private $compiledHtml;
 
     private array $variables = [];
 
@@ -53,7 +53,7 @@ class TemplateEngine
 
     private function replaceUnusedVariables()
     {
-        preg_replace("#{.*}#","",$this->compiledHtml);
+        $this->compiledHtml = preg_replace("#{.*}#","",$this->compiledHtml);
     }
 
     private function replaceBodyContent()
