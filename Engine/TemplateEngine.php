@@ -19,6 +19,7 @@ class TemplateEngine
         $this->fetchTemplateContent($template);
         $this->replaceBodyContent();
         $this->replaceVariablesWithValues();
+        $this->replaceUnusedVariables();
 
         echo $this->compiledHtml;
     }
@@ -48,6 +49,11 @@ class TemplateEngine
         foreach ($this->variables as $key => $value) {
             $this->compiledHtml = str_replace('{$' . $key . '}',$this->variables[$key], $this->compiledHtml);
         }
+    }
+
+    private function replaceUnusedVariables()
+    {
+        preg_replace("#{.*}#","",$this->compiledHtml);
     }
 
     private function replaceBodyContent()

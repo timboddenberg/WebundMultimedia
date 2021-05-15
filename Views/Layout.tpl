@@ -58,7 +58,19 @@
 <script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
 <script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
 
+{$errorMessage}
+
 <script>
+    var errorMessageElement = $(".errorMessage");
+
+    if (errorMessageElement.length > 0)
+    {
+        setTimeout(function () {
+            $(".errorMessage").fadeOut();
+        },3000);
+    }
+    console.log(errorMessageElement);
+
     $("#openOverlay").click(function (){
         $(".menuOverlay").addClass("menuOverlayOpened");
         $(".menuContentWrapper").css("padding","40px");

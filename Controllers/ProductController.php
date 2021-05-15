@@ -29,7 +29,16 @@ class ProductController extends AbstractController{
     {
         $result = $this->database->query("SELECT * FROM produkte WHERE Id = " . $id);
 
-        return $result->fetch_assoc();
+        $product = $result->fetch_assoc();
+
+        if ($product == NULL)
+        {
+            $this->errorHandler->setErrorMessage("Es wurde kein Produkt zu der ID gefunden.");
+            header("Location: http://Localhost/WebundMultimedia/");
+            die;
+        }
+
+        return $product;
     }
 
     public function displayProductAdministration()
