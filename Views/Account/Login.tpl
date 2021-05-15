@@ -9,7 +9,6 @@
 <div class="registrationForm">
 
     <form class="" action="/WebundMultimedia/user/login/performlogin" method="post">
-        <span style="color:white">{$accountErrorMessage}</span><br>
         <input type="email" name="username" placeholder="E-Mail Adresse" required><br>
         <input type="password" name="password" placeholder="Passwort" required><br>
         <input type="submit" value="Login"><br>

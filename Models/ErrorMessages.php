@@ -38,4 +38,10 @@ class ErrorMessages
     {
         return $this->errorMessage;
     }
+
+    public function unsetMessages()
+    {
+        $this->errorMessage = "";
+        $this->requestEngine->setSESSION("errorHandler",serialize($this));
+    }
 }

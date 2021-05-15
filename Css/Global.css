@@ -75,6 +75,14 @@ body
     margin-right: 10px;
 }
 
+.errorMessage
+{
+    top: 80px;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
 .container
 {
     margin-top: 140px;

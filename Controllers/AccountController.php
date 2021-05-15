@@ -22,19 +22,10 @@ class AccountController extends AbstractController
     }
     public function displayLogin()
     {
-        if ($this->errorHandler->errorOccurred())
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-        else
-            $this->templateEngine->addVariable("accountErrorMessage","");
-
         $this->templateEngine->display("\Account\Login.tpl");
     }
     public function displayLogout()
     {
-        if ($this->errorHandler->errorOccurred())
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-        else
-            $this->templateEngine->addVariable("accountErrorMessage","");
         $this->templateEngine->display("\Account\Logout.tpl");
     }
     /*
@@ -44,18 +35,11 @@ class AccountController extends AbstractController
     {
         $this->request->setSESSION("user", serialize(new User("")));
         $this->request->setSESSION('userID','');
-        if ($this->errorHandler->errorOccurred())
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-        else
-            $this->templateEngine->addVariable("accountErrorMessage","");
+
         header("Location: http://Localhost/WebundMultimedia/user/logout");
     }
     public function displayRegister()
     {
-        if ($this->errorHandler->errorOccurred())
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-        else
-            $this->templateEngine->addVariable("accountErrorMessage","");
 
         $this->templateEngine->display("\Account\Registration.tpl");
     }
@@ -83,14 +67,14 @@ class AccountController extends AbstractController
                 die;
             }
             $this->errorHandler->setErrorMessage("Bitte geben Sie das korrekte Passwort ein.");
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-            $this->templateEngine->display("\Account\Login.tpl");
+            header("Location: http://Localhost/WebundMultimedia/user/login");
+            die;
         }
         else
         {
             $this->errorHandler->setErrorMessage("Der Benutzername konnte nicht gefunden werden.");
-            $this->templateEngine->addVariable("accountErrorMessage",$this->errorHandler->getErrorMessage());
-            $this->templateEngine->display("\Account\Login.tpl");
+            header("Location: http://Localhost/WebundMultimedia/user/login");
+            die;
         }
     }
 
@@ -109,7 +93,6 @@ class AccountController extends AbstractController
         $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . " ', '$firstname', '$lastname')";
         $this->database->query($query);
 
-        $this->errorHandler->setErrorMessage("");
         header("Location: http://Localhost/WebundMultimedia/user/login");
         die;
     }
