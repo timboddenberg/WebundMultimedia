@@ -19,12 +19,15 @@ class AbstractController
 
     protected ErrorMessages $errorHandler;
 
+    protected RouterEngine $routerEngine;
+
     public function __construct()
     {
         $this->templateEngine = new TemplateEngine();
         $this->database = DatabaseEngine::getConnection();
         $this->request = new RequestEngine();
         $this->errorHandler = new ErrorMessages();
+        $this->routerEngine = new RouterEngine();
 
         $this->generateUser();
         $this->assignErrorMessage();

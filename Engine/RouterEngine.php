@@ -55,4 +55,18 @@ class RouterEngine
 
         return $requestRoute;
     }
+
+    public function redirect(string $controller, string $action)
+    {
+
+        var_dump($this->routes);die;
+        foreach ($this->routes as $route)
+        {
+            if ($route["class"] = $controller && $route["action"] == $action)
+            {
+                header("Location: http://Localhost/WebundMultimedia/" . $route["route"]);
+                die;
+            }
+        }
+    }
 }

@@ -16,7 +16,7 @@ class AccountController extends AbstractController
             $this->templateEngine->display("\Account\UserRemover.tpl");
         }
         else{
-            header("Location: http://Localhost/WebundMultimedia/user/login");
+            $this->routerEngine->redirect("AccountController","displayLogin");
         }
 
     }
@@ -36,7 +36,7 @@ class AccountController extends AbstractController
         $this->request->setSESSION("user", serialize(new User("")));
         $this->request->setSESSION('userID','');
 
-        header("Location: http://Localhost/WebundMultimedia/user/logout");
+        $this->routerEngine->redirect("AccountController","displayLogout");
     }
     public function displayRegister()
     {
@@ -63,28 +63,23 @@ class AccountController extends AbstractController
                 $this->request->setSESSION('userID', $row[0]);
 
                 $this->errorHandler->setErrorMessage("");
-                header("Location: http://Localhost/WebundMultimedia/");
-                die;
+                $this->routerEngine->redirect("IndexController","loadIndex");
             }
             $this->errorHandler->setErrorMessage("Bitte geben Sie das korrekte Passwort ein.");
-            header("Location: http://Localhost/WebundMultimedia/user/login");
-            die;
+            $this->routerEngine->redirect("AccountController","displayLogin");
         }
         else
         {
             $this->errorHandler->setErrorMessage("Der Benutzername konnte nicht gefunden werden.");
-            header("Location: http://Localhost/WebundMultimedia/user/login");
-            die;
+            $this->routerEngine->redirect("AccountController","displayLogin");
         }
     }
 
     public function register()
     {
         if (!$this->validateAccountCreation())
-        {
-            header("Location: http://Localhost/WebundMultimedia/user/register");
-            die;
-        }
+            $this->routerEngine->redirect("AccountController","displayRegister");
+
         $firstname = $this->request->POST("firstname");
         $lastname = $this->request->POST("lastname");
         $userName = $this->request->POST("username");
@@ -93,8 +88,7 @@ class AccountController extends AbstractController
         $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . " ', '$firstname', '$lastname')";
         $this->database->query($query);
 
-        header("Location: http://Localhost/WebundMultimedia/user/login");
-        die;
+        $this->routerEngine->redirect("AccountController","displayLogin");
     }
 
     private function validateAccountCreation()
@@ -114,13 +108,17 @@ class AccountController extends AbstractController
     /*
      * This method removes a user from the database
      */
-    public function performRemove(){
+    public function performRemove()
+    {
         $password = $this->request->POST("password");
         $username = $this->request->SESSION('userID');
+
         $query = "DELETE FROM benutzer WHERE Passwort = '" . User::EncryptPassword($password) . " ' AND Id = '$username'";
         $this->database->query($query);
+
         $this->request->setSESSION("user", serialize(new User("")));
         $this->request->setSESSION('userID','');
-        header("Location: http://Localhost/WebundMultimedia/");
+
+        $this->routerEngine->redirect("IndexController","loadIndex");
     }
 }
