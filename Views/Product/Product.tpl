@@ -6,12 +6,20 @@
     </div>
     <div class="productInfo">
         <div class="productTitle">{$Name}</div>
-        <div class="productPrice">Preis: {$Preis}€</div>
+        <hr>
         <div class="productDescription">{$Beschreibung}</div>
+        <hr>
+        <div>
+            <div class="productPrice">Preis: {$Preis}€</div>
+            <div>
+                <button id="inCartButton" type="button"><span>In den Einkaufswagen!</span></button>
+            </div>
+        </div>
     </div>
 </div>
-<div>
-    <button id="inCartButton" type="button">In den Einkaufswagen!</button>
+
+<div class="productComments">
+    <p>Kommentare</p>
+    {$comments}
 </div>
-<div class="productComments">Kommentare</div>
 
