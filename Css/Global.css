@@ -201,3 +201,36 @@ body
     width: 62%;
 }
 
+.searchbar{
+    background: transparent!important;
+    color: white;
+    border: 3px solid #72A7A5;
+    border-radius: 10px;
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 20px;
+    border-radius: 30px;
+
+}
+.searchbar input{
+    border: none;
+    background: transparent!important;
+    color: white;
+    outline: none;
+}
+.searchbar input[type="text"]{
+    margin-left: 10px;
+    width: 100px;
+    transition: width 0.1s ease-in-out;
+}
+.searchbar input[type="text"]:focus{
+    width: 600px;
+    transition: width 0.1s ease-in-out;
+}
+.searchbar button{
+    background: transparent!important;
+    border: none;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
