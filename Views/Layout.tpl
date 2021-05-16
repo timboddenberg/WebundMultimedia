@@ -36,11 +36,16 @@
 
         <div class="searchbar">
             <form action="/WebundMultimedia/product/search" method="post">
-                <input id="search" type="text" placeholder="Suchen...">
-                <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                <input id="search" type="text" maxlength="254" placeholder="Suchen...">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg></button>
+                    </svg>
+                </button>
             </form>
+            <div class="searchResults">
+
+            </div>
         </div>
 
         <!-- social media buttons -->
@@ -85,23 +90,45 @@
         $(".menuContentWrapper").css("padding","40px");
     });
 
-
     /*
     code for the searchbar
     */
-    $('#search').keydown(function (event){
+
+    var requestCounter = 0;
+    $('#search').keydown(function (event)
+    {
+        requestCounter++;
         var searchTerm = ($('#search').val() + String.fromCharCode(event.keyCode)).toLowerCase();
-        $.ajax({
-            data:{
-                "searchTerm":searchTerm
-            },
-            url:'http://localhost/WebundMultimedia/search',
+        $(".searchResults").empty();
 
-            success: function(result){
-                console.log(result.toString());
+        if (searchTerm !== "")
+        {
+            $.ajax({
+                async: false,
+                data:{
+                    "searchTerm": searchTerm
+                },
+                url:'http://localhost/WebundMultimedia/search',
+                success: function(result){
+                    var jsonResponse = JSON.parse(result);
+                    for (var i=0; i < jsonResponse.length; i++)
+                    {
+                        $(".searchResults").append("<div class='searchBarResult'><a href='http://localhost/WebundMultimedia/product/" + jsonResponse[i].Id + "'>" + jsonResponse[i].Name + "</a></div>");
+                    }
+                }
+            });
+        }
 
-            }
-        });
+        if (requestCounter >= 20)
+        {
+            $("#search").prop("disabled",true);
+
+            setTimeout(function (){
+                $("#search").prop("disabled",false);
+                requestCounter = 0;
+            },3000);
+        }
+
     });
 </script>
 

@@ -13,17 +13,15 @@ class SearchController extends AbstractController
 
         $result = $this->database->query($query);
         $products = array();
+
         if($result->num_rows > 0)
         {
-
             while($row = $result->fetch_assoc())
             {
-
-                $products[] = $row;
+                array_push($products,$row);
             }
         }
-        var_dump(json_encode($products));
-        die();
-        return json_encode($products);
+
+        echo json_encode($products);
     }
 }
