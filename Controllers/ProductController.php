@@ -14,6 +14,7 @@ class ProductController extends AbstractController{
             $product = $this->getProductFromDatabase($productId);
             $this->assignProductVariables($product);
             $this->templateEngine->display("/Product/Product.tpl");
+            $this->generateHtmlProductComments();
         }
     }
 
@@ -122,5 +123,49 @@ class ProductController extends AbstractController{
         }
 
         return $html;
+    }
+
+    private function getProductComments()
+    {
+        $pId = $this->request->GET("productID");
+        $query = "SELECT * FROM kommentare WHERE ProductID = '" . $pId . "' ORDER BY ProductID DESC ";
+        $result = $this->database->query($query);
+        $productComments = array();
+
+        if($result->num_rows > 0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                array_push($productComments, $row);
+                //$productComments[] = new ProductComment($row["Id"],$row["Inhalt"],$row["ProductID"],$row["UserId"]);
+            }
+        }
+        return $productComments;
+    }
+
+    private function generateHtmlProductComments()
+    {
+        $productComments = $this->getProductComments();
+        $CommentsHtml = "";
+
+        foreach ($productComments as $productComment)
+        {
+            $tempHtml =
+                '
+                    <div class="row productCommentWrapper">
+                        <div class="productCommentUser">
+                            <p>'. $productComment["UserId"] .'</p>
+                        </div>
+                        <div class="productNameList col-md-4">
+                            <p>'. $productComment["Inhalt"] .'</p>
+                        </div>
+                    </div>
+                ';
+
+            $CommentsHtml = $CommentsHtml . $tempHtml;
+        }
+
+        $this->templateEngine->addVariable("comments", $CommentsHtml);
+        return $CommentsHtml;
     }
 }
