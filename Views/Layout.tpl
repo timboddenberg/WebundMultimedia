@@ -34,8 +34,9 @@
             <div class="userGreeting">{$usernameGreetingString}</div>
         </div>
 
+        <!--Searchbar for products -->
         <div class="searchbar">
-            <form action="/WebundMultimedia/product/search" method="post">
+            <form>
                 <input id="search" type="text" maxlength="254" placeholder="Suchen...">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
@@ -91,7 +92,7 @@
     });
 
     /*
-    code for the searchbar
+    searches for the product what the users enters into the searchbar and pauses when the user does to many requests
     */
 
     var requestCounter = 0;

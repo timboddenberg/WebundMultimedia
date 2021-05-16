@@ -232,6 +232,7 @@ body
     border: none;
     margin-right: 5px;
     margin-bottom: 3px;
+    pointer-events: none;
 }
 
 .searchResults
