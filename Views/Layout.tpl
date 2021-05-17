@@ -84,7 +84,6 @@
             $(".errorMessage").fadeOut();
         },3000);
     }
-    console.log(errorMessageElement);
 
     $("#openOverlay").click(function (){
         $(".menuOverlay").addClass("menuOverlayOpened");
@@ -95,15 +94,27 @@
     searches for the product what the users enters into the searchbar and pauses when the user does to many requests
     */
 
-    var requestCounter = 0;
+    var results;
+    var searchTerm;
+    var oldSearchTerm;
+
     $('#search').keydown(function (event)
     {
-        requestCounter++;
-        var searchTerm = ($('#search').val() + String.fromCharCode(event.keyCode)).toLowerCase();
+        oldSearchTerm = searchTerm;
+        searchTerm = ($('#search').val() + String.fromCharCode(event.keyCode)).toLowerCase();
+
+        var refreshResults;
+
+        if (oldSearchTerm === undefined)
+            refreshResults = true;
+        else
+            refreshResults = !searchTerm.includes(oldSearchTerm);
+
         $(".searchResults").empty();
 
-        if (searchTerm !== "")
+        if (refreshResults)
         {
+            console.log("deubg: refreshed!");
             $.ajax({
                 async: false,
                 data:{
@@ -111,25 +122,18 @@
                 },
                 url:'http://localhost/WebundMultimedia/search',
                 success: function(result){
-                    var jsonResponse = JSON.parse(result);
-                    for (var i=0; i < jsonResponse.length; i++)
-                    {
-                        $(".searchResults").append("<div class='searchBarResult'><a href='http://localhost/WebundMultimedia/product/" + jsonResponse[i].Id + "'>" + jsonResponse[i].Name + "</a></div>");
-                    }
+                    results = JSON.parse(result);
                 }
             });
         }
 
-        if (requestCounter >= 20)
+        for (var i = 0; i < results.length; i++)
         {
-            $("#search").prop("disabled",true);
-
-            setTimeout(function (){
-                $("#search").prop("disabled",false);
-                requestCounter = 0;
-            },3000);
+            var productName = results[i].Name;
+            productName = productName.toLowerCase();
+            if (productName.includes(searchTerm))
+                $(".searchResults").append("<div class='searchBarResult'><a href='http://localhost/WebundMultimedia/product/" + results[i].Id + "'>" + results[i].Name + "</a></div>");
         }
-
     });
 </script>
 
