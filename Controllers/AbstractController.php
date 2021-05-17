@@ -5,6 +5,7 @@ require_once __DIR__ . "\..\Engine\DatabaseEngine.php";
 require_once __DIR__ . "\..\Engine\RequestEngine.php";
 require_once __DIR__ . "\..\Models\User.php";
 require_once __DIR__ . "\..\Models\ErrorMessages.php";
+require_once __DIR__ . "\..\Controllers\SearchController.php";
 
 
 class AbstractController
@@ -28,6 +29,8 @@ class AbstractController
 
         $this->generateUser();
         $this->assignErrorMessage();
+
+        SearchController::setUpProductCache();
     }
 
     private function generateUser()

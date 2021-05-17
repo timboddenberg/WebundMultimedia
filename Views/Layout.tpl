@@ -95,10 +95,10 @@
     searches for the product what the users enters into the searchbar and pauses when the user does to many requests
     */
 
-    var requestCounter = 0;
+    //var requestCounter = 0;
     $('#search').keydown(function (event)
     {
-        requestCounter++;
+        //requestCounter++;
         var searchTerm = ($('#search').val() + String.fromCharCode(event.keyCode)).toLowerCase();
         $(".searchResults").empty();
 
@@ -111,15 +111,19 @@
                 },
                 url:'http://localhost/WebundMultimedia/search',
                 success: function(result){
+                    console.log(result);
+                    /*
                     var jsonResponse = JSON.parse(result);
                     for (var i=0; i < jsonResponse.length; i++)
                     {
                         $(".searchResults").append("<div class='searchBarResult'><a href='http://localhost/WebundMultimedia/product/" + jsonResponse[i].Id + "'>" + jsonResponse[i].Name + "</a></div>");
                     }
+                    */
                 }
             });
         }
 
+        /*
         if (requestCounter >= 20)
         {
             $("#search").prop("disabled",true);
@@ -129,6 +133,7 @@
                 requestCounter = 0;
             },3000);
         }
+         */
 
     });
 </script>
