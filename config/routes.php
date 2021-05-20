@@ -61,6 +61,16 @@ return [
         'action' => 'deleteProduct',
         'route' => '/product/delete'
     ],
+    'displayAddComment' =>[
+        'class' => 'ProductController',
+        'action' => 'displayAddComment',
+        'route' => '/product/addComment'
+    ],
+    'addComment' =>[
+        'class' => 'ProductController',
+        'action' => 'addComment',
+        'route' => '/product/addComment/submit'
+    ],
     'removeUser'=>[
         'class' => 'AccountController',
         'action' => 'displayUserRemover',

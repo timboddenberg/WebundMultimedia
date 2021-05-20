@@ -19,7 +19,12 @@
 </div>
 
 <div class="productComments">
-    <p>Kommentare</p>
+    <p style="font-size: 25px">Kommentare</p>
+    <div>
+        <a id="newCommentButton" type="button" href="/WebundMultimedia/product/addComment?id={$Id}" ><span>Kommentar erstellen</span></a>
+    </div>
+    <br>
     {$comments}
 </div>
+<br>
 
