@@ -27,6 +27,7 @@ class AbstractController
         $this->errorHandler = new ErrorMessages();
 
         $this->generateUser();
+        $this->assignErrorMessage();
     }
 
     private function generateUser()
@@ -37,6 +38,21 @@ class AbstractController
             $this->user = unserialize($this->request->SESSION("user"));
 
         $this->templateEngine->addVariable("usernameGreetingString", $this->user->getUsernameGreetingString());
+    }
+
+    private function assignErrorMessage()
+    {
+        $errorMessageHtml = "";
+        if ($this->errorHandler->errorOccurred())
+        {
+            $errorMessageHtml = "
+            <div class='alert alert-danger errorMessage' role='alert'>" .
+                $this->errorHandler->getErrorMessage() .
+            "</div>";
+        }
+
+        $this->templateEngine->addVariable("errorMessage",$errorMessageHtml);
+        $this->errorHandler->unsetMessages();
     }
 
 }

@@ -75,6 +75,14 @@ body
     margin-right: 10px;
 }
 
+.errorMessage
+{
+    top: 80px;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
 .container
 {
     margin-top: 140px;
@@ -191,5 +199,58 @@ body
 }
 .listButtons a:hover{
     width: 62%;
+}
+
+.searchbar{
+    background: transparent!important;
+    color: white;
+    border: 3px solid #72A7A5;
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+
+}
+.searchbar input{
+    border: none;
+    background: transparent!important;
+    color: white;
+    outline: none;
+}
+.searchbar input[type="text"]{
+    margin-left: 13px;
+    width: 100px;
+    transition: width 0.1s ease-in-out;
+}
+.searchbar input[type="text"]:focus{
+    width: 600px;
+    transition: width 0.1s ease-in-out;
+}
+.searchbar button{
+    background: transparent!important;
+    border: none;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    pointer-events: none;
+}
+
+.searchResults
+{
+    background: black;
+}
+
+.searchBarResult
+{
+    border-top: 1px solid white;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.searchBarResult a
+{
+    text-decoration: none;
+    color: white;
 }
 
