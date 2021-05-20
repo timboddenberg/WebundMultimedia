@@ -180,11 +180,8 @@ class ProductController extends AbstractController{
 
     public function displayAddComment()
     {
-        if ($this->errorHandler->errorOccurred())
-            $this->templateEngine->addVariable("addCommentErrorMessage",$this->errorHandler->getErrorMessage());
-        else
-            $this->templateEngine->addVariable("addCommentErrorMessage","");
-
+        $productId = $this->request->SESSION("productId");
+        $this->assignProductVariables($this->getProductFromDatabase($productId));
         $this->templateEngine->display("\product\AddComment.tpl");
     }
 
