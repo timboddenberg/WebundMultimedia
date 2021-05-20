@@ -1,7 +1,10 @@
+
 <?php
 
 require_once __DIR__ . "\AbstractController.php";
 require_once __DIR__ . "\..\Models\Product.php";
+require_once __DIR__ . "\..\Models\Comment.php";
+require_once __DIR__ . "\..\Models\User.php";
 
 class ProductController extends AbstractController{
 
@@ -13,8 +16,8 @@ class ProductController extends AbstractController{
         {
             $product = $this->getProductFromDatabase($productId);
             $this->assignProductVariables($product);
+            $this->templateEngine->addVariable("comments", $this->generateHtmlProductComments());
             $this->templateEngine->display("/Product/Product.tpl");
-            $this->generateHtmlProductComments();
         }
     }
 
@@ -127,8 +130,8 @@ class ProductController extends AbstractController{
 
     private function getProductComments()
     {
-        $pId = $this->request->GET("productID");
-        $query = "SELECT * FROM kommentare WHERE ProductID = '" . $pId . "' ORDER BY ProductID DESC ";
+        $productId = $this->request->SESSION("productId");
+        $query = "SELECT * FROM kommentare WHERE ProductID = '" . $productId . "' ORDER BY ProductID DESC ";
         $result = $this->database->query($query);
         $productComments = array();
 
@@ -136,8 +139,7 @@ class ProductController extends AbstractController{
         {
             while($row = $result->fetch_assoc())
             {
-                array_push($productComments, $row);
-                //$productComments[] = new ProductComment($row["Id"],$row["Inhalt"],$row["ProductID"],$row["UserId"]);
+                $productComments[] = new Comment($row["Id"],$row["Inhalt"],$row["ProductID"],$row["UserId"]);
             }
         }
         return $productComments;
@@ -145,27 +147,57 @@ class ProductController extends AbstractController{
 
     private function generateHtmlProductComments()
     {
+
+
         $productComments = $this->getProductComments();
         $CommentsHtml = "";
 
         foreach ($productComments as $productComment)
         {
+            $UserId = $productComment->getUserId();
+
+            $query = "SELECT * FROM benutzer WHERE Id = '" . $UserId . "'";
+            $result = $this->database->query($query);
+            $row = $result->fetch_assoc();
+
             $tempHtml =
-                '
-                    <div class="row productCommentWrapper">
+                '   
+                    <hr>
+                    <div class="productCommentWrapper">
                         <div class="productCommentUser">
-                            <p>'. $productComment["UserId"] .'</p>
+                            <p>User: '. $row["Vorname"] .' '. $row["Nachname"] .'</p>
                         </div>
-                        <div class="productNameList col-md-4">
-                            <p>'. $productComment["Inhalt"] .'</p>
+                        <div class="productCommentInhalt">
+                            <p>'. $productComment->getInhalt() .'</p>
                         </div>
-                    </div>
+                    </div>                    
                 ';
 
             $CommentsHtml = $CommentsHtml . $tempHtml;
         }
-
-        $this->templateEngine->addVariable("comments", $CommentsHtml);
         return $CommentsHtml;
+    }
+
+    public function displayAddComment()
+    {
+        if ($this->errorHandler->errorOccurred())
+            $this->templateEngine->addVariable("addCommentErrorMessage",$this->errorHandler->getErrorMessage());
+        else
+            $this->templateEngine->addVariable("addCommentErrorMessage","");
+
+        $this->templateEngine->display("\product\AddComment.tpl");
+    }
+
+    public function addComment()
+    {
+        $content = $this->request->POST("commentText");
+        $userId = $this->request->SESSION("userID");
+        $productId = $this->request->SESSION("productId");
+
+        $query = "INSERT INTO kommentare VALUES('','$content', '$productId', '$userId')";
+        $this->database->query($query);
+        $this->errorHandler->setErrorMessage("");
+        header("Location: http://Localhost/WebundMultimedia/product/$productId");
+        die();
     }
 }

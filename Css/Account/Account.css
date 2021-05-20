@@ -67,7 +67,6 @@
 }
 .UserRemover form input{
     display: inline-block;
-    height: 40px;
     background: transparent!important;
     color: white;
     border: 3px solid #72A7A5;

@@ -21,6 +21,11 @@ class User
     {
         $this->firstname = $fname;
     }
+    public function setLastName(String $lname)
+    {
+        $this->name = $lname;
+    }
+
     public function getUserID(){
         return $this->userID;
     }
