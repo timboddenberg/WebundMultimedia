@@ -80,5 +80,20 @@ return [
         'class' => 'AccountController',
         'action' => 'performRemove',
         'route' => '/user/remove/perform'
+    ],
+    'addProductToShoppingCart'=>[
+        'class' => 'ShoppingCartController',
+        'action'=> 'addProductToShoppingCart',
+        'route' => '/product/addtoshoppingcart'
+    ],
+    'displayShoppingCart'=>[
+        'class' => 'ShoppingCartController',
+        'action' => 'displayShoppingCart',
+        'route' => '/shoppingcart'
+    ],
+    'deleteProductFromShoppingCart' =>[
+        'class' => 'ShoppingCartController',
+        'action' => 'deleteProductFromShoppingCart',
+        'route' => '/shoppingcart/deleteproduct'
     ]
 ];
