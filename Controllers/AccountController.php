@@ -11,14 +11,9 @@ class AccountController extends AbstractController
      * if no: the user has to log in
      */
     public function displayUserRemover(){
-        $userId = $_SESSION['userID'];
-        if($userId != ''){
-            $this->templateEngine->display("\Account\UserRemover.tpl");
-        }
-        else{
-            header("Location: http://Localhost/WebundMultimedia/user/login");
-        }
+        User::validateUserRequest($this->user);
 
+        $this->templateEngine->display("\Account\UserRemover.tpl");
     }
     public function displayLogin()
     {
@@ -33,6 +28,7 @@ class AccountController extends AbstractController
      */
     public function performLogout()
     {
+        User::validateUserRequest($this->user);
         $this->request->setSESSION("user", serialize(new User("")));
         $this->request->setSESSION('userID','');
 
@@ -40,7 +36,6 @@ class AccountController extends AbstractController
     }
     public function displayRegister()
     {
-
         $this->templateEngine->display("\Account\Registration.tpl");
     }
 
@@ -58,6 +53,7 @@ class AccountController extends AbstractController
                 $user = new User($row[1]);
                 $user->setUserID($row[0]);
                 $user->setFirstName($row[3]);
+                $user->setIsAdmin($row[5]);
 
                 $this->request->setSESSION("user",serialize($user));
                 $this->request->setSESSION('userID', $row[0]);
@@ -90,7 +86,7 @@ class AccountController extends AbstractController
         $userName = $this->request->POST("username");
         $password = $this->request->POST("password");
 
-        $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . " ', '$firstname', '$lastname')";
+        $query = "INSERT INTO benutzer VALUES('','$userName', '" . User::EncryptPassword($password) . " ', '$firstname', '$lastname','')";
         $this->database->query($query);
 
         header("Location: http://Localhost/WebundMultimedia/user/login");
@@ -114,13 +110,19 @@ class AccountController extends AbstractController
     /*
      * This method removes a user from the database
      */
-    public function performRemove(){
+    public function performRemove()
+    {
+        User::validateUserRequest($this->user);
+
         $password = $this->request->POST("password");
         $username = $this->request->SESSION('userID');
+
         $query = "DELETE FROM benutzer WHERE Passwort = '" . User::EncryptPassword($password) . " ' AND Id = '$username'";
         $this->database->query($query);
+
         $this->request->setSESSION("user", serialize(new User("")));
         $this->request->setSESSION('userID','');
+
         header("Location: http://Localhost/WebundMultimedia/");
     }
 }
