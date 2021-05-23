@@ -253,4 +253,6 @@ body
     text-decoration: none;
     color: white;
 }
-
+#nonvisibleid{
+    visibility: hidden;
+}
