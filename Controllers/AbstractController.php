@@ -28,6 +28,7 @@ class AbstractController
 
         $this->generateUser();
         $this->assignErrorMessage();
+        $this->generateContentForMenu();
     }
 
     private function generateUser()
@@ -53,6 +54,11 @@ class AbstractController
 
         $this->templateEngine->addVariable("errorMessage",$errorMessageHtml);
         $this->errorHandler->unsetMessages();
+    }
+
+    private function generateContentForMenu()
+    {
+        $this->templateEngine->addVariable("menuUserContent", User::getUserInteractionHtmlForMenu($this->user));
     }
 
 }
