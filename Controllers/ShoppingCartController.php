@@ -57,32 +57,32 @@ class ShoppingCartController extends AbstractController
                 $this->shoppingCart->addProduct($shoppingCartItem);
             }
         }
+
         $this->request->setSESSION("shoppingCart", serialize($this->shoppingCart));
-        var_dump($this->shoppingCart);
-        die();
+
         header("Location: http://Localhost/WebundMultimedia/product/$id");
 
     }
 
-    //This method delets a product from the shopping cart
+    //This method deletes a product from the shopping cart
     public function deleteProductFromShoppingCart(){
         $id = $_REQUEST['id'];
-        $shoppingCart = unserialize($this->request->SESSION("shoppingCart"));
-        if($shoppingCart != ""){
-            for($i = 0; $i < count($shoppingCart); $i++){
-                if($id == $shoppingCart[$i]){
-                    unset($shoppingCart[$i]);
-                    $this->request->setSESSION("shoppingCart", serialize($shoppingCart));
-                    break;
-                }
+
+        if($this->shoppingCart != ""){
+            if($this->shoppingCart->checkProductInShoppingCart($id)){
+                $this->shoppingCart->deleteProduct($id);
+                $this->request->setSESSION("shoppingCart", serialize($this->shoppingCart));
             }
         }
+
+        header("Location: http://Localhost/WebundMultimedia/shoppingcart");
+        die();
     }
 
     //This method empties the shopping cart
     public function emptyShoppingCart(){
         $this->request->setSESSION("shoppingCart", "");
-        header("Location: http://Localhost/WebundMultimedia");
+        header("Location: http://Localhost/WebundMultimedia/shoppingcart");
         die();
     }
 }
