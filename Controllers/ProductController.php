@@ -57,13 +57,16 @@ class ProductController extends AbstractController{
     {
         User::validateAdminRequest($this->user);
 
-        $id = $this->request->POST("id");
         $name = $this->request->POST("name");
         $image = $this->generateBase64String($this->request->FILE("image"));
         $amount = $this->request->POST("amount");
         $price = $this->request->POST("price");
+        $description = $this->request->POST("description");
+        $brand = $this->request->POST("brand");
+        $color = $this->request->POST("color");
+        $material = $this->request->POST("material");
 
-        $query = "INSERT INTO produkte VALUES('$id','$name', '$price', '$amount','','$image','','','')";
+        $query = "INSERT INTO produkte VALUES('','$name', '$price', '$amount','$description','$image','$brand','$color','$material')";
         $this->database->query($query);
         header("Location: http://Localhost/WebundMultimedia/product/administration");
         die;
