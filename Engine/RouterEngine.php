@@ -40,7 +40,7 @@ class RouterEngine
     private function adjustParametersForProductRequest(string $requestRoute)
     {
         if (! str_contains($requestRoute,"/product/") ||
-            preg_match("#product/[a-zA-Z]{1,}#", $requestRoute))
+             preg_match("#product/[a-zA-Z]{1,}#", $requestRoute))
                 return $requestRoute;
 
         preg_match("#\/[0-9]*$#",$requestRoute, $foundMatches);
