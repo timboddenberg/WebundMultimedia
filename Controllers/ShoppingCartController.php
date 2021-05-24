@@ -35,8 +35,7 @@ class ShoppingCartController extends AbstractController
     //This method adds a product to the shopping cart
     public function addProductToShoppingCart(){
 
-        //überarbeiten
-        $id = $_REQUEST['id'];
+        $id = $this->request->GET('id');
 
         if($this->shoppingCart->checkProductInShoppingCart($id)){
             $this->shoppingCart->increaseAmountOfProduct($id);
@@ -67,8 +66,8 @@ class ShoppingCartController extends AbstractController
 
     //This method deletes a product from the shopping cart
     public function deleteProductFromShoppingCart(){
-        $id = $_REQUEST['id'];
-        $delete = $_REQUEST['delete'];
+        $id = $this->request->GET('id');
+        $delete = $this->request->GET('delete');
 
         if($this->shoppingCart != ""){
             if($this->shoppingCart->checkProductInShoppingCart($id) && $delete == "n"){
