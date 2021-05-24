@@ -80,5 +80,11 @@ return [
         'class' => 'AccountController',
         'action' => 'performRemove',
         'route' => '/user/remove/perform'
+    ],
+    'displayAllProducts'=>[
+        'class' => 'ProductController',
+        'action' => 'displayAllProducts',
+        'route' => '/allProducts/all'
     ]
+
 ];
