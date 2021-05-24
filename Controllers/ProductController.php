@@ -207,4 +207,52 @@ class ProductController extends AbstractController{
         header("Location: http://Localhost/WebundMultimedia/product/$productId");
         die();
     }
+
+    private function generateHtmlAllProducts()
+    {
+        $productList = $this->getAllProducts();
+        $productsHtml = "";
+
+        foreach ($productList as $product)
+        {
+            $image = $product->getImage();
+            $name = $product->getName();
+            $price = $product->getPrice();
+            $productId = $product->getId();
+
+            $tempHtml =
+                '   
+                    <a style="text-decoration:none" href="/WebundMultimedia/product/'.$productId.'">
+                        <div class="row singleProductWrapper">                        
+                            <div class="col-md-1">
+                                <div class="productPictures">
+                                    <img src="' . $image . '"/>
+                                </div>                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class="productNames">
+                                    <p>'.$name.'</p>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="productPrices">
+                                    <p>'.$price.'€</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>                                             
+                    <hr>                
+                ';
+
+            $productsHtml = $productsHtml . $tempHtml;
+        }
+        return $productsHtml;
+    }
+
+    public function displayAllProducts()
+    {
+            $this->templateEngine->addVariable("allProducts", $this->generateHtmlAllProducts());
+            $this->templateEngine->display("/Product/AllProducts.tpl");
+    }
+
 }
