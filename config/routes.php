@@ -81,6 +81,11 @@ return [
         'action' => 'performRemove',
         'route' => '/user/remove/perform'
     ],
+    'displayAllProducts'=>[
+        'class' => 'ProductController',
+        'action' => 'displayAllProducts',
+        'route' => '/allProducts/all'
+    ],
     'addProductToShoppingCart'=>[
         'class' => 'ShoppingCartController',
         'action'=> 'addProductToShoppingCart',

@@ -192,20 +192,26 @@ body
     background-color: red;
 }
 
-.listButton
-{
-    margin: 10px;
-}
 
-.listButton a
-{
+.listButton{
+    background-color: #72A7A5;
     width: 60%;
-    background-color: #72A7A5
+    margin: 10px;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    border-radius: .3rem;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.listButton a:hover
-{
-    width: 62%;
+.listButton:hover{
+    background-color: #256866;
+    color: white;
 }
 
 .searchbar

@@ -84,6 +84,9 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Produkte
+                        <div>
+                            <a class="listButton" href="/WebundMultimedia/allProducts/all">Alle Produkte</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
