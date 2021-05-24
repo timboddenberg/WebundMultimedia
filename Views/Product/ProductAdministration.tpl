@@ -12,7 +12,6 @@
 
 <div class="row productAdministrationContentWrapper">
 
-    <script>
 
     <div class="col-md-6" style="border-right: 1px solid white">
         <div id="triggerImageUpload">
@@ -27,6 +26,10 @@
         <form method="post" action="/WebundMultimedia/product/add" enctype="multipart/form-data" id="productUploadForm">
             <input type="text" placeholder="Name" name="name" required/><br>
             <input type="text" placeholder="Preis" name="price" required/><br>
+            <input type="text" name="description" placeholder="Beschreibung"><br>
+            <input type="text" name="brand" placeholder="Marke"><br>
+            <input type="text" name="color" placeholder="Farbe"><br>
+            <input type="text" name="material" placeholder="Material"><br>
             <input type="text" placeholder="Lagerbestand" name="amount" required/><br>
             <input type="file" id="imageInputField" name="image" required/><br>
             <input type="submit" id="submitProductUpload"/>
