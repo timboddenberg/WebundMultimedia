@@ -214,9 +214,8 @@ body
     color: white;
 }
 
-
-
-.searchbar{
+.searchbar
+{
     background: transparent!important;
     color: white;
     border: 3px solid #72A7A5;
@@ -227,22 +226,29 @@ body
     overflow: hidden;
 
 }
-.searchbar input{
+.searchbar input
+{
     border: none;
     background: transparent!important;
     color: white;
     outline: none;
 }
-.searchbar input[type="text"]{
+
+.searchbar input[type="text"]
+{
     margin-left: 13px;
     width: 100px;
     transition: width 0.1s ease-in-out;
 }
-.searchbar input[type="text"]:focus{
+
+.searchbar input[type="text"]:focus
+{
     width: 600px;
     transition: width 0.1s ease-in-out;
 }
-.searchbar button{
+
+.searchbar button
+{
     background: transparent!important;
     border: none;
     margin-right: 5px;
@@ -268,4 +274,6 @@ body
     text-decoration: none;
     color: white;
 }
-
+#nonvisibleid{
+    visibility: hidden;
+}

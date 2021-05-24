@@ -47,12 +47,16 @@ class ProductController extends AbstractController{
 
     public function displayProductAdministration()
     {
+        User::validateAdminRequest($this->user);
+
         $this->templateEngine->addVariable("productList",$this->generateHtmlProduct());
         $this->templateEngine->display("/Product/ProductAdministration.tpl");
     }
 
     public function addProduct()
     {
+        User::validateAdminRequest($this->user);
+
         $id = $this->request->POST("id");
         $name = $this->request->POST("name");
         $image = $this->generateBase64String($this->request->FILE("image"));
@@ -72,6 +76,8 @@ class ProductController extends AbstractController{
 
     public function deleteProduct()
     {
+        User::validateAdminRequest($this->user);
+
         $id = $this->request->GET("productID");
         $query = "DELETE FROM produkte WHERE id = '" . $id . "'";
         $this->database->query($query);
@@ -180,6 +186,8 @@ class ProductController extends AbstractController{
 
     public function displayAddComment()
     {
+        User::validateUserRequest($this->user);
+
         $productId = $this->request->SESSION("productId");
         $this->assignProductVariables($this->getProductFromDatabase($productId));
         $this->templateEngine->display("\product\AddComment.tpl");
@@ -187,6 +195,8 @@ class ProductController extends AbstractController{
 
     public function addComment()
     {
+        User::validateUserRequest($this->user);
+
         $content = $this->request->POST("commentText");
         $userId = $this->request->SESSION("userID");
         $productId = $this->request->SESSION("productId");

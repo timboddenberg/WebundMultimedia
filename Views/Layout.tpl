@@ -70,72 +70,7 @@
     </div>
 </nav>
 
-<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
-<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
-
 {$errorMessage}
-
-<script>
-    var errorMessageElement = $(".errorMessage");
-
-    if (errorMessageElement.length > 0)
-    {
-        setTimeout(function () {
-            $(".errorMessage").fadeOut();
-        },3000);
-    }
-
-    $("#openOverlay").click(function (){
-        $(".menuOverlay").addClass("menuOverlayOpened");
-        $(".menuContentWrapper").css("padding","40px");
-    });
-
-    /*
-    searches for the product what the users enters into the searchbar and pauses when the user does to many requests
-    */
-
-    var results;
-    var searchTerm;
-    var oldSearchTerm;
-
-    $('#search').keydown(function (event)
-    {
-        oldSearchTerm = searchTerm;
-        searchTerm = ($('#search').val() + String.fromCharCode(event.keyCode)).toLowerCase();
-
-        var refreshResults;
-
-        if (oldSearchTerm === undefined)
-            refreshResults = true;
-        else
-            refreshResults = !searchTerm.includes(oldSearchTerm);
-
-        $(".searchResults").empty();
-
-        if (refreshResults)
-        {
-            console.log("deubg: refreshed!");
-            $.ajax({
-                async: false,
-                data:{
-                    "searchTerm": searchTerm
-                },
-                url:'http://localhost/WebundMultimedia/search',
-                success: function(result){
-                    results = JSON.parse(result);
-                }
-            });
-        }
-
-        for (var i = 0; i < results.length; i++)
-        {
-            var productName = results[i].Name;
-            productName = productName.toLowerCase();
-            if (productName.includes(searchTerm))
-                $(".searchResults").append("<div class='searchBarResult'><a href='http://localhost/WebundMultimedia/product/" + results[i].Id + "'>" + results[i].Name + "</a></div>");
-        }
-    });
-</script>
 
 <aside class="menuOverlay">
     <div class="menuContentWrapper">
@@ -158,14 +93,9 @@
                     <div class="col-md-12 menuContentHeadline">
                         Benutzer
                         <div class="listButton">
-                            <a style="background-color: #72A7A5" href="/WebundMultimedia" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Startseite</a>
+                            <a href="/WebundMultimedia" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Startseite</a>
                         </div>
-                        <div class="listButton">
-                            <a style="background-color: #72A7A5" href="/WebundMultimedia/user/remove" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Account verwalten</a>
-                        </div>
-                        <div class="listButton">
-                            <a style="background-color: #72A7A5" href="/WebundMultimedia/user/logout/performLogout" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Ausloggen</a>
-                        </div>
+                        {$menuUserContent}
                     </div>
                 </div>
             </div>
@@ -176,15 +106,13 @@
     </div>
 </aside>
 
-<script>
-    $("#closeOverlay").click(function (){
-        $(".menuOverlay").removeClass("menuOverlayOpened");
-        $(".menuContentWrapper").css("padding","0");
-    });
-</script>
 <div class="container">
     {body}
 </div>
+
+<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
+<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
+<script src="/WebundMultimedia/Js/Custom/Index.js"></script>
 
 </body>
 </html>
