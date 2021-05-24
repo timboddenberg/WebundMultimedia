@@ -45,5 +45,30 @@ class ShoppingCart
         }
     }
 
+    //decrease amount of product, when the product is in the shopping cart
+    public function decreaseAmountOfProduct($id){
+        for($i = 0; $i < count($this->shoppingCart); $i++){
+            if(strcmp($this->shoppingCart[$i]->getId(), $id) == 0){
+                if($this->shoppingCart[$i]->getAmount() > 1){
+                    $this->shoppingCart[$i]->setAmount($this->shoppingCart[$i]->getAmount() - 1);
+                }
+                else{
+                    $this->deleteProduct($id);
+                }
+            }
+        }
+    }
+    //delete a product from the shopping list
+    public function deleteProduct($id){
+        $tempShoppingCart = array();
+        for($i = 0; $i < count($this->shoppingCart); $i++){
+            if(strcmp($this->shoppingCart[$i]->getId(), $id) != 0){
+                array_push($tempShoppingCart, $this->shoppingCart[$i]);
+            }
+        }
+        $this->shoppingCart = $tempShoppingCart;
+    }
+
+
 
 }
