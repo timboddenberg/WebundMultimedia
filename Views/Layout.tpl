@@ -84,6 +84,7 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Produkte
+                        <hr style="width: 70%; margin-left: 15%;">
                         <div>
                             <a class="listButton" href="/WebundMultimedia/allProducts/all">Alle Produkte</a>
                         </div>
@@ -92,8 +93,9 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Benutzer
-                        <div class="listButton">
-                            <a href="/WebundMultimedia" class="btn btn-secondary btn-lg active " role="button" aria-pressed="true">Startseite</a>
+                        <hr style="width: 70%; margin-left: 15%;">
+                        <div>
+                            <a class="listButton" href="/WebundMultimedia" >Startseite</a>
                         </div>
                         {$menuUserContent}
                     </div>

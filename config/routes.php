@@ -100,5 +100,30 @@ return [
         'class' => 'ShoppingCartController',
         'action' => 'deleteProductFromShoppingCart',
         'route' => '/shoppingcart/deleteproduct'
+    ],
+    'rateOne' =>[
+        'class' => 'ProductController',
+        'action' => 'rateOne',
+        'route' => '/product/rateOne'
+    ],
+    'rateTwo' =>[
+        'class' => 'ProductController',
+        'action' => 'rateTwo',
+        'route' => '/product/rateTwo'
+    ],
+    'rateThree' =>[
+        'class' => 'ProductController',
+        'action' => 'rateThree',
+        'route' => '/product/rateThree'
+    ],
+    'rateFour' =>[
+        'class' => 'ProductController',
+        'action' => 'rateFour',
+        'route' => '/product/rateFour'
+    ],
+    'rateFive' =>[
+        'class' => 'ProductController',
+        'action' => 'rateFive',
+        'route' => '/product/rateFive'
     ]
 ];

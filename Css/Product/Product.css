@@ -100,31 +100,32 @@
 
 .productDetails{
     margin-top: 10%;
-    height: 400px;
 }
 
 .productDetails div{
-
+    padding:0;
 }
 
 .productInfo{
-    margin-left:30%;
-    float:none;
 }
 
 .productInfo div{
-    margin-top: 10px;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+.productInfo div div{
+    padding: 0;
 }
 
 .productPicture{
-    float:left;
-    width: 300px;
-    height: 300px;
 }
+
+
 .productPicture img{
     width: 300px;
     height: 300px;
+    padding: 10px;
     border-radius: 20px;
 }
 
@@ -135,18 +136,19 @@
 
 .productPrice{
     color: white;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-right: 60px;
     float: left;
-    width: max-content;
-    font-size: 20px;
-    margin-right: 80px;
 }
 
 .productDescription{
     color: white;
-    height: 232px;
+    height: 150px;
 }
 
 .productComments{
+    padding: 10px;
     color: white;
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.71);
@@ -154,7 +156,6 @@
     border-radius: 20px;
     font-family: Arial, Helvetica, sans-serif;
     border-width: 1.5px;
-    margin-bottom: 10px;
 }
 .productComments p{
     padding-left: 2%;
@@ -169,7 +170,7 @@
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-    width: 260px;
+    width: 255px;
     border-radius: 15px;
     transition: all 0.4s;
 }
@@ -217,7 +218,8 @@ hr{
 }
 
 #newCommentButton{
-    margin-left: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
     color: white;
     background-color: #72A7A5;
     border: none;
@@ -301,7 +303,9 @@ hr{
 .singleProductWrapper{
     transition: all 0.3s;
     border-radius: 10px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .singleProductWrapper:hover{
@@ -311,19 +315,44 @@ hr{
 
 .singleProductWrapper div{
     padding-left: 0;
+    padding-bottom: 0;
 }
 
 .productPictures img{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.productNames{
+.productInfoText{
     color:white;
-    margin-left: 10px;
+    font-size: 20px;
 }
 
-.productPrices{
+.productInfoDescription{
     color:white;
+    font-size: 15px;
+}
+
+#review-wrapper{
+    width: max-content;
+    height: max-content;
+    padding-left: 10px;
+    margin-top: 5px;
+    color: white;
+    font-size: 18px;
+    padding-bottom: 0;
+}
+
+#review a{
+    text-decoration: none;
+}
+
+#review a svg{
+    transition: all 100ms;
+}
+
+#review a svg:hover{
+    fill: #72A7A5;
 }
