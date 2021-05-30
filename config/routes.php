@@ -100,5 +100,16 @@ return [
         'class' => 'ShoppingCartController',
         'action' => 'deleteProductFromShoppingCart',
         'route' => '/shoppingcart/deleteproduct'
+    ],
+    'showEditProductInDatabase' =>[
+        'class'=>'ProductController',
+        'action'=>'displayEditProductInDatabase',
+        'route'=>'/product/edit'
+    ],
+    'editProductInDatabase'=>[
+        'class'=>'ProductController',
+        'action'=>'editProductInDatabase',
+        'route'=>'/admin/product/edit'
     ]
+
 ];
