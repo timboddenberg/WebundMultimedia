@@ -8,14 +8,22 @@ class Product
     private float $price;
     private String $image;
     private int $amount;
+    private String $description;
+    private String $brand;
+    private String $color;
+    private String $material;
 
-    public function __construct(int $id, string $name, float $price, string $image, int $amount)
+    public function __construct(int $id, string $name, float $price, string $image, int $amount, string $description, string $brand, string $color, string $material)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->image = $image;
         $this->amount = $amount;
+        $this->description = $description;
+        $this->brand = $brand;
+        $this->color = $color;
+        $this->material = $material;
     }
 
     public function getName(): string
@@ -71,6 +79,72 @@ class Product
     {
         $this->id = $id;
     }
+
+    /**
+     * @return String
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param String $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return String
+     */
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param String $brand
+     */
+    public function setBrand(string $brand): void
+    {
+        $this->brand = $brand;
+    }
+
+    /**
+     * @return String
+     */
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param String $color
+     */
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return String
+     */
+    public function getMaterial(): string
+    {
+        return $this->material;
+    }
+
+    /**
+     * @param String $material
+     */
+    public function setMaterial(string $material): void
+    {
+        $this->material = $material;
+    }
+
+
 
 
 

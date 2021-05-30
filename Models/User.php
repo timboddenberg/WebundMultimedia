@@ -98,13 +98,13 @@ class User
 
         if ($user->isAdmin())
         {
-            $html = $html . "<div class='listButton'><a href='/WebundMultimedia/product/administration' class='btn btn-secondary btn-lg active'>Produktadministration</a></div>";
+            $html = $html . "<div><a href='/WebundMultimedia/product/administration' class='listButton'>Produktadministration</a></div>";
         }
 
         if ($user->isLoggedIn())
         {
-            $html = $html . "<div class='listButton'><a href='/WebundMultimedia/user/remove' class='btn btn-secondary btn-lg active'>Account verwalten</a></div>";
-            $html = $html . "<div class='listButton'><a href='/WebundMultimedia/user/logout/performLogout' class='btn btn-secondary btn-lg active'>Ausloggen</a></div>";
+            $html = $html . "<div><a href='/WebundMultimedia/user/remove' class='listButton'>Account verwalten</a></div>";
+            $html = $html . "<div><a href='/WebundMultimedia/user/logout/performLogout' class='listButton'>Ausloggen</a></div>";
         }
 
         return $html;
