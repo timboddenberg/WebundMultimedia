@@ -327,3 +327,7 @@ hr{
 .productPrices{
     color:white;
 }
+#productEditForm{
+    text-align: center;
+    color: white;
+}
