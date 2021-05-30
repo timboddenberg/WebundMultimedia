@@ -125,5 +125,16 @@ return [
         'class' => 'ProductController',
         'action' => 'rateFive',
         'route' => '/product/rateFive'
+    ],
+    'showEditProductInDatabase' =>[
+        'class'=>'ProductController',
+        'action'=>'displayEditProductInDatabase',
+        'route'=>'/product/edit'
+    ],
+    'editProductInDatabase'=>[
+        'class'=>'ProductController',
+        'action'=>'editProductInDatabase',
+        'route'=>'/admin/product/edit'
     ]
+
 ];

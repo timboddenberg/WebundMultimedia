@@ -40,4 +40,8 @@
         {$productList}
     </div>
 
+
 </div>
+<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
+<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
+<script src="/WebundMultimedia/Js/Custom/ImagePreview.js"></script>
