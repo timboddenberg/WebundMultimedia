@@ -16,3 +16,5 @@
         <img src="Images/productImage5.png" style="width: 200px;"/>
     </div>
 </div>
+
+<script src="/WebundMultimedia/Js/Custom/Index.js"></script>
