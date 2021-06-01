@@ -462,18 +462,40 @@ class ProductController extends AbstractController{
     //This method edits a product in the database
     public function editProductInDatabase(){
         User::validateAdminRequest($this->user);
+
+        //check product from database
         $productID = $this->request->GET("productID");
-        $name = $this->request->POST("name");
-        $amount = $this->request->POST("amount");
-        $price = $this->request->POST("price");
-        $description = $this->request->POST("description");
-        $brand = $this->request->POST("brand");
-        $color = $this->request->POST("color");
-        $material = $this->request->POST("material");
+        $query = "SELECT * FROM produkte WHERE Id = '$productID'";
+        $result = $this->database->query($query);
+
+        //assign variables and check if an edit exists
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+               $name = $this->checkWhetherAnEditExits($this->request->POST("name"), $row["Name"]);
+               $amount = $this->checkWhetherAnEditExits($this->request->POST("amount"), $row["Bestand"]);
+               $description = $this->checkWhetherAnEditExits($this->request->POST("description"), $row["Beschreibung"]);
+               $price = $this->checkWhetherAnEditExits($this->request->POST("price"), $row["Preis"]);
+               $brand = $this->checkWhetherAnEditExits($this->request->POST("brand"), $row["Marke"]);
+               $color = $this->checkWhetherAnEditExits($this->request->POST("color"), $row["Farbe"]);
+               $material = $this->checkWhetherAnEditExits($this->request->POST("material"), $row["Material"]);
+            }
+        }
+
+        //edit the product
         $query = "UPDATE produkte SET Name='$name', Preis='$price', Farbe='$color', Bestand='$amount', Beschreibung='$description', Marke='$brand', Material='$material' WHERE Id='$productID'";
         $this->database->query($query);
         header("Location: http://Localhost/WebundMultimedia/product/edit?productID=$productID");
         die();
+    }
+
+    //This method checks whether there is an edit for a product
+    private function checkWhetherAnEditExits($newValue, $previousValue){
+        if($newValue != ""){
+            return $newValue;
+        }
+        else{
+            return $previousValue;
+        }
     }
 
 }

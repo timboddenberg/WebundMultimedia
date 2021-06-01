@@ -26,13 +26,13 @@
 <div class="row productAdministrationContentWrapper">
     <div class="col-md-12">
         <form  class="right" method="post" action="/WebundMultimedia/admin/product/edit?productID={$Id}" enctype="multipart/form-data" id="productEditForm">
-            <input type="text" placeholder="Name: {$Name}" name="name" required/><br>
-            <input type="text" placeholder="Preis: {$Preis} Euro" name="price" required/><br>
+            <input type="text" placeholder="Name: {$Name}" name="name"/><br>
+            <input type="text" placeholder="Preis: {$Preis} Euro" name="price"/><br>
             <input type="text" name="description" placeholder="Beschreibung: {$Beschreibung}"><br>
             <input type="text" name="brand" placeholder="Marke: {$Marke}"><br>
             <input type="text" name="color" placeholder="Farbe: {$Farbe}"><br>
             <input type="text" name="material" placeholder="Material: {$Material}"><br>
-            <input type="text" placeholder="Lagerbestand: {$Bestand}" name="amount" required/><br>
+            <input type="text" placeholder="Lagerbestand: {$Bestand}" name="amount"/><br>
             <input type="file" id="editImageInputField" name="image" /><br>
             <input type="submit" id="submitEditProduct"/>
         </form>
