@@ -17,4 +17,4 @@
     </div>
 </div>
 
-<script src="/WebundMultimedia/Js/Custom/Index.js"></script>
+<script src="/WebundMultimedia/Js/Custom/Slider.js"></script>
