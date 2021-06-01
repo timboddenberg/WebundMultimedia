@@ -1,9 +1,9 @@
-
 <?php
 
 require_once __DIR__ . "\AbstractController.php";
 require_once __DIR__ . "\..\Models\Product.php";
 require_once __DIR__ . "\..\Models\Comment.php";
+require_once __DIR__ . "\..\Models\CommentFactory.php";
 require_once __DIR__ . "\..\Models\User.php";
 require_once __DIR__ . "\..\Models\Rating.php";
 
@@ -12,13 +12,14 @@ class ProductController extends AbstractController{
     public function displayProduct()
     {
         $productId = $this->request->SESSION("productId");
+        $commentFactory = new CommentFactory($productId);
 
         if (! empty($productId))
         {
             $product = $this->getProductFromDatabase($productId);
             $this->assignProductVariables($product);
-            $this->templateEngine->addVariable("avgRating", $this->getAverageRating($productId));
-            $this->templateEngine->addVariable("comments", $this->generateHtmlProductComments());
+            $this->templateEngine->addVariable("avgRating", $commentFactory->getAverageRating($productId));
+            $this->templateEngine->addVariable("comments", $commentFactory->generateHtmlProductComments());
             $this->templateEngine->display("/Product/Product.tpl");
         }
     }
@@ -45,6 +46,15 @@ class ProductController extends AbstractController{
         }
 
         return $product;
+    }
+
+    public function displayAddComment()
+    {
+        User::validateUserRequest($this->user);
+
+        $productId = $this->request->SESSION("productId");
+        $this->assignProductVariables($this->getProductFromDatabase($productId));
+        $this->templateEngine->display("\product\AddComment.tpl");
     }
 
     public function displayProductAdministration()
@@ -146,80 +156,6 @@ class ProductController extends AbstractController{
         return $html;
     }
 
-    private function getProductComments()
-    {
-        $productId = $this->request->SESSION("productId");
-        $query = "SELECT * FROM kommentare WHERE ProductID = '" . $productId . "' ORDER BY ProductID DESC ";
-        $result = $this->database->query($query);
-        $productComments = array();
-
-        if($result->num_rows > 0)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $productComments[] = new Comment($row["Id"],$row["Inhalt"],$row["ProductID"],$row["UserId"]);
-            }
-        }
-        return $productComments;
-    }
-
-    private function generateHtmlProductComments()
-    {
-
-
-        $productComments = $this->getProductComments();
-        $CommentsHtml = "";
-
-        foreach ($productComments as $productComment)
-        {
-            $UserId = $productComment->getUserId();
-
-            $query = "SELECT * FROM benutzer WHERE Id = '" . $UserId . "'";
-            $result = $this->database->query($query);
-            $row = $result->fetch_assoc();
-
-            $tempHtml =
-                '   
-                    <hr>
-                    <div class="productCommentWrapper">
-                        <div class="productCommentUser">
-                            <p>User: '. $row["Vorname"] .' '. $row["Nachname"] .'</p>
-                        </div>
-                        <div class="productCommentInhalt">
-                            <p>'. $productComment->getInhalt() .'</p>
-                        </div>
-                    </div>                    
-                ';
-
-            $CommentsHtml = $CommentsHtml . $tempHtml;
-        }
-        return $CommentsHtml;
-    }
-
-    public function displayAddComment()
-    {
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $this->assignProductVariables($this->getProductFromDatabase($productId));
-        $this->templateEngine->display("\product\AddComment.tpl");
-    }
-
-    public function addComment()
-    {
-        User::validateUserRequest($this->user);
-
-        $content = $this->request->POST("commentText");
-        $userId = $this->request->SESSION("userID");
-        $productId = $this->request->SESSION("productId");
-
-        $query = "INSERT INTO kommentare VALUES('','$content', '$productId', '$userId')";
-        $this->database->query($query);
-        $this->errorHandler->setErrorMessage("");
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die();
-    }
-
     private function generateHtmlAllProducts()
     {
         $productList = $this->getAllProducts();
@@ -273,194 +209,25 @@ class ProductController extends AbstractController{
             $this->templateEngine->display("/Product/AllProducts.tpl");
     }
 
-
-    public function checkIfAlreadyRated($productId, $user){
-        $query = "SELECT * FROM bewertungen WHERE ProductID = '" . $productId . "'";
-        $result = $this->database->query($query);
-        $productRatings = array();
-
-        if($result->num_rows > 0)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $productRatings[] = new Rating($row["ID"],$row["Rating"],$row["ProductID"],$row["BenutzerID"]);
-            }
-        }
-        foreach ($productRatings as $productRating){
-            $currentUser = $productRating->getUserId();
-            if($currentUser == $user){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function rateOne(){
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $username = $this->request->SESSION('userID');
-        if($username != null){
-
-            if($this->checkIfAlreadyRated($productId, $username)==false){
-                $query = "INSERT INTO bewertungen VALUES('','1', '$productId', '$username')";
-                $this->database->query($query);
-            }
-            else{
-                $errorMessage = new ErrorMessages();
-
-                $errorMessage->setErrorMessage("Sie haben das Produkt bereits bewertet!");
-            }
-
-        }
-
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die;
-
-    }
-
-    public function rateTwo(){
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $username = $this->request->SESSION('userID');
-        if($username != null){
-
-            if($this->checkIfAlreadyRated($productId, $username)==false){
-                $query = "INSERT INTO bewertungen VALUES('','2', '$productId', '$username')";
-                $this->database->query($query);
-            }
-            else{
-                $errorMessage = new ErrorMessages();
-
-                $errorMessage->setErrorMessage("Sie haben das Produkt bereits bewertet!");
-            }
-
-        }
-
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die;
-
-    }
-
-    public function rateThree(){
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $username = $this->request->SESSION('userID');
-        if($username != null){
-
-            if($this->checkIfAlreadyRated($productId, $username)==false){
-                $query = "INSERT INTO bewertungen VALUES('','3', '$productId', '$username')";
-                $this->database->query($query);
-            }
-            else{
-                $errorMessage = new ErrorMessages();
-
-                $errorMessage->setErrorMessage("Sie haben das Produkt bereits bewertet!");
-            }
-
-        }
-
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die;
-
-    }
-
-    public function rateFour(){
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $username = $this->request->SESSION('userID');
-        if($username != null){
-
-            if($this->checkIfAlreadyRated($productId, $username)==false){
-                $query = "INSERT INTO bewertungen VALUES('','4', '$productId', '$username')";
-                $this->database->query($query);
-            }
-            else{
-                $errorMessage = new ErrorMessages();
-
-                $errorMessage->setErrorMessage("Sie haben das Produkt bereits bewertet!");
-            }
-
-        }
-
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die;
-
-    }
-
-    public function rateFive(){
-        User::validateUserRequest($this->user);
-
-        $productId = $this->request->SESSION("productId");
-        $username = $this->request->SESSION('userID');
-        if($username != null){
-
-            if($this->checkIfAlreadyRated($productId, $username)==false){
-                $query = "INSERT INTO bewertungen VALUES('','5', '$productId', '$username')";
-                $this->database->query($query);
-            }
-            else{
-                $errorMessage = new ErrorMessages();
-
-                $errorMessage->setErrorMessage("Sie haben das Produkt bereits bewertet!");
-            }
-
-        }
-
-        header("Location: http://Localhost/WebundMultimedia/product/$productId");
-        die;
-
-    }
-
-    public function getAverageRating($productId){
-        $query = "SELECT * FROM bewertungen WHERE ProductID = '" . $productId . "'";
-        $result = $this->database->query($query);
-        $productRatings = array();
-        $counter = 0;
-        $currentRatingCum= 0;
-        $avgRating = 0;
-
-        if($result->num_rows > 0)
-        {
-            while($row = $result->fetch_assoc())
-            {
-                $productRatings[] = new Rating($row["ID"],$row["Rating"],$row["ProductID"],$row["BenutzerID"]);
-            }
-        }
-        foreach ($productRatings as $productRating){
-            $counter = $counter + 1;
-            $currentRatingCum = $currentRatingCum + $productRating->getRating();
-        }
-        if($counter > 0){
-            $avgRating = $currentRatingCum/$counter;
-            return "Durchschnittsbewertung:<br>" .$avgRating. " von 5 " .
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-star" viewBox="0 0 16 16" style="margin-bottom: 6px;">
-                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                         </svg>';
-        }
-
-        return " ";
-
-    }
-
-
     //This method displays the edit product page
-    public function displayEditProductInDatabase(){
+    public function displayEditProductInDatabase()
+    {
         User::validateAdminRequest($this->user);
+
         $productId = $this->request->GET("productID");
+
         if(! empty($productId)){
             $product = $this->getProductFromDatabase($productId);
             $this->assignProductVariables($product);
         }
+
         $this->templateEngine->display("/Product/EditProduct.tpl");
 
     }
 
     //This method edits a product in the database
-    public function editProductInDatabase(){
+    public function editProductInDatabase()
+    {
         User::validateAdminRequest($this->user);
 
         //check product from database
@@ -486,6 +253,22 @@ class ProductController extends AbstractController{
         $this->database->query($query);
         header("Location: http://Localhost/WebundMultimedia/product/edit?productID=$productID");
         die();
+    }
+
+    public function rateProduct()
+    {
+        $productId = $this->request->SESSION("productId");
+        $commentFactory = new CommentFactory($productId);
+
+        $commentFactory->rateProduct();
+    }
+
+    public function addComment()
+    {
+        $productId = $this->request->SESSION("productId");
+        $commentFactory = new CommentFactory($productId);
+
+        $commentFactory->addComment();
     }
 
     //This method checks whether there is an edit for a product

@@ -108,13 +108,12 @@
     </div>
 </aside>
 
+<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
+<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
+
 <div class="container">
     {body}
 </div>
-
-<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
-<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
-<script src="/WebundMultimedia/Js/Custom/Index.js"></script>
 
 </body>
 </html>

@@ -32,9 +32,9 @@ return [
         'route' => '/user/login/performlogin'
     ],
     'logout' => [
-    'class' => 'AccountController',
-    'action' => 'displayLogout',
-    'route' => '/user/logout'
+        'class' => 'AccountController',
+        'action' => 'displayLogout',
+        'route' => '/user/logout'
     ],
     'performLogout' => [
         'class' => 'AccountController',
@@ -101,30 +101,10 @@ return [
         'action' => 'deleteProductFromShoppingCart',
         'route' => '/shoppingcart/deleteproduct'
     ],
-    'rateOne' =>[
+    'rateProduct' =>[
         'class' => 'ProductController',
-        'action' => 'rateOne',
-        'route' => '/product/rateOne'
-    ],
-    'rateTwo' =>[
-        'class' => 'ProductController',
-        'action' => 'rateTwo',
-        'route' => '/product/rateTwo'
-    ],
-    'rateThree' =>[
-        'class' => 'ProductController',
-        'action' => 'rateThree',
-        'route' => '/product/rateThree'
-    ],
-    'rateFour' =>[
-        'class' => 'ProductController',
-        'action' => 'rateFour',
-        'route' => '/product/rateFour'
-    ],
-    'rateFive' =>[
-        'class' => 'ProductController',
-        'action' => 'rateFive',
-        'route' => '/product/rateFive'
+        'action' => 'rateProduct',
+        'route' => '/product/rate'
     ],
     'showEditProductInDatabase' =>[
         'class'=>'ProductController',
@@ -136,5 +116,4 @@ return [
         'action'=>'editProductInDatabase',
         'route'=>'/admin/product/edit'
     ]
-
 ];
