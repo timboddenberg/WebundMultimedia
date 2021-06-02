@@ -43,13 +43,16 @@
         <hr>
         <div class="productDescription">{$Beschreibung}</div>
         <hr>
-        <div>
+        <div class="col-md-4" style="float: left;">
             <div class="productPrice">Preis: {$Preis} €</div>
-            <div>
-                <button id="inCartButton" type="button"><span>In den Einkaufswagen!</span></button>
-            </div>
-            <div class="productAmount">Bestand: {$Bestand}</div>
         </div>
+        <div class="col-md-4" style="float: left; text-align: center; padding-right: 150px;">
+            <div class="productAmount col-md-4">Bestand: {$Bestand}</div>
+        </div>
+        <div class="col-md-4" style="float: left; text-align: right;">
+            <button id="inCartButton" type="button"><span>In den Einkaufswagen!</span></button>
+        </div>
+
     </div>
 </div>
 
