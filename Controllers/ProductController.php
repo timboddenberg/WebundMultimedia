@@ -168,6 +168,7 @@ class ProductController extends AbstractController{
             $price = $product->getPrice();
             $productId = $product->getId();
             $description = $product->getDescription();
+            $amount = $product->getAmount();
 
             $tempHtml =
                 '   
@@ -191,6 +192,11 @@ class ProductController extends AbstractController{
                             <div class="col-md-4">
                                 <div class="productInfoDescription">
                                     <p>'.$description.'</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="productInfoText">
+                                    <p>Aktueller Bestand:<br>'.$amount.'</p>
                                 </div>
                             </div>
                         </div>

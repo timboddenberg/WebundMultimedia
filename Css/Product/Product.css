@@ -147,6 +147,13 @@
     height: 150px;
 }
 
+.productAmount{
+    color: white;
+    margin-top: 15px;
+    right: 7%;
+    position: absolute;
+}
+
 .productComments{
     padding: 10px;
     color: white;
@@ -173,6 +180,7 @@
     width: 255px;
     border-radius: 15px;
     transition: all 0.4s;
+    float: left;
 }
 
 #inCartButton span {

@@ -48,6 +48,7 @@
             <div>
                 <button id="inCartButton" type="button"><span>In den Einkaufswagen!</span></button>
             </div>
+            <div class="productAmount">Bestand: {$Bestand}</div>
         </div>
     </div>
 </div>
