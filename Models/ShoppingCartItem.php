@@ -9,6 +9,15 @@ class ShoppingCartItem
     private string $id;
     private string $name;
     private int $amount;
+    private String $picture;
+
+    public function setPicture($picture): void{
+        $this->picture = $picture;
+    }
+
+    public function getPicture(): string{
+        return $this->picture;
+    }
 
     public function getId(): string
     {
