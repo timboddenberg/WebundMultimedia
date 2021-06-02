@@ -115,5 +115,15 @@ return [
         'class'=>'ProductController',
         'action'=>'editProductInDatabase',
         'route'=>'/admin/product/edit'
+    ],
+    'increaseProductInShoppingCart'=>[
+        'class'=>'ShoppingCartController',
+        'action'=>'increaseProductInShoppingCart',
+        'route'=>'/shoppingcart/increaseProductInShoppingCart'
+    ],
+    'decreaseProductInShoppingCart'=>[
+        'class'=>'ShoppingCartController',
+        'action'=>'decreaseProductInShoppingCart',
+        'route'=>'/shoppingcart/decreaseProductInShoppingCart'
     ]
 ];

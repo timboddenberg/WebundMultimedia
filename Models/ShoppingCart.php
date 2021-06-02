@@ -69,6 +69,10 @@ class ShoppingCart
         $this->shoppingCart = $tempShoppingCart;
     }
 
+    //This method returns the shopping cart
+    public function getShoppingCart(){
+        return $this->shoppingCart;
+    }
 
 
 }
