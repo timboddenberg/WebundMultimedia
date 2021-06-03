@@ -10,3 +10,11 @@
 </div>
 
 {$shoppingCartHTML}
+
+
+<script>
+    var button = document.getElementById("orderButton");
+    button.onclick = function (){
+        location.assign('http://localhost/WebundMultimedia');
+    }
+</script>

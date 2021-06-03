@@ -98,8 +98,9 @@ class ShoppingCartController extends AbstractController
         $cart = $this->shoppingCart->getShoppingCart();
         $shoppingCartHTML = "";
 
-        foreach($cart as $item){
-            $tempHTML = '
+        if(count($cart) > 0){
+            foreach($cart as $item){
+                $tempHTML = '
                 <div class="row col-md-12 shoppingCartItem">
                     <div class="productPictures col-md-3">
                         <img src="'. $item->getPicture() .'">
@@ -109,8 +110,8 @@ class ShoppingCartController extends AbstractController
                     </div>
                     <div class="col-md-3 productInfoText">
                         <p>Menge: '. $item->getAmount().'</p>
-                        <a href="http://localhost/WebundMultimedia/shoppingcart/increaseProductInShoppingCart?id='.$item->getId().'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 50px; width: 50px">+</a>
-                        <a href="http://localhost/WebundMultimedia/shoppingcart/decreaseProductInShoppingCart?id='.$item->getId().'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 50px; width: 50px">-</a>
+                        <a href="http://localhost/WebundMultimedia/shoppingcart/increaseProductInShoppingCart?id='.$item->getId().'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 50px; width: 50px; background-color: #72A7A5;">+</a>
+                        <a href="http://localhost/WebundMultimedia/shoppingcart/decreaseProductInShoppingCart?id='.$item->getId().'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="height: 50px; width: 50px; background-color: #72A7A5;">-</a>
                     </div>
                     <div class="col-md-3">
                          <a href="/WebundMultimedia/shoppingcart/deleteproduct?delete=y&id='. $item->getId() .'">
@@ -122,11 +123,27 @@ class ShoppingCartController extends AbstractController
                     </div>
                     
                 </div>
-                
+                <hr>
+            ';
+                $shoppingCartHTML = $shoppingCartHTML . $tempHTML;
+            }
+            $tempHTML = '
+            <div>
+                <button id="orderButton" type="button"><span>Kaufen</span></button>
+            </div>
             ';
             $shoppingCartHTML = $shoppingCartHTML . $tempHTML;
-
         }
+        else{
+            $shoppingCartHTML = '
+                <div class="emptyShoppingCart">
+                    <p>Warenkorb ist leer!</p>
+                </div>
+                
+            ';
+        }
+
+
         $this->templateEngine->addVariable("shoppingCartHTML", $shoppingCartHTML);
 
     }

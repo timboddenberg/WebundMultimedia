@@ -310,10 +310,65 @@ body
 #nonvisibleid{
     visibility: hidden;
 }
+
 .shoppingCartItem{
-    margin-bottom: 10px;
-    border: white 2px solid;
+    padding-top: 10px;
     border-radius: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    transition: all 0.2s;
+
 }
+.shoppingCartItem:hover{
+    background-color: rgba(128, 128, 128, 0.49);
+    cursor: pointer;
+
+}
+
+.emptyShoppingCart p{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+#orderButton{
+    color: white;
+    background-color: #72A7A5;
+    border: none;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 255px;
+    border-radius: 15px;
+    transition: all 0.4s;
+    float: right;
+}
+
+#orderButton span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.4s;
+}
+
+#orderButton span:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.4s;
+}
+
+#orderButton:hover{
+    background-color: #256866;
+}
+
+#orderButton:hover span{
+    padding-right: 25px;
+}
+
+#orderButton:hover span::after{
+    opacity: 1;
+    right: 0;
+}
+

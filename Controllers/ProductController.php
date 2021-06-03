@@ -306,7 +306,6 @@ class ProductController extends AbstractController{
             {
                 $tempHtml =
                     '   
-                    
                         <div class="row col-md-12 singleProductWrapper" style="cursor: auto">
                                     <div class="productPictures col-md-2">
                                         <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
@@ -331,7 +330,7 @@ class ProductController extends AbstractController{
                                     <div class="productInfoText col-md-2">
                                        <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
                                             <p>Mein Rating:<br>'.$row["Rating"].'</p> 
-                                        </a>                                       
+                                       </a>                                       
                                     </div>
                                 <div class="col-md-1" style="float: left; padding: 0;">
                                     <a href="/WebundMultimedia/deleteRating?id='.$row["ID"].'" style="text-decoration: none; color: white;">
@@ -342,17 +341,18 @@ class ProductController extends AbstractController{
                                     </a>
                                 </div>                             
                              
-                        </div>
-                        
-                     
-                                                                 
+                        </div>                                   
                     <hr>                
                 ';
 
                 $ratedProductsHtml = $ratedProductsHtml . $tempHtml;
             }
+            return $ratedProductsHtml;
         }
-        return $ratedProductsHtml;
+        else {
+            return "<p style='color: white; text-align: center;'>Bisher wurden keine Produkte von dir bewertet.</p>";
+        }
+
     }
 
     public function deleteRatedProduct(){
