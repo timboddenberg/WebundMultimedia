@@ -99,9 +99,7 @@
                         <div>
                             <a class="listButton" href="/WebundMultimedia/allProducts/all">Alle Produkte</a>
                         </div>
-                        <div>
-                            <a class="listButton" href="/WebundMultimedia/shoppingcart">Warenkorb</a>
-                        </div>
+                        {$menuUserProductContent}
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -59,6 +59,7 @@ class AbstractController
     private function generateContentForMenu()
     {
         $this->templateEngine->addVariable("menuUserContent", User::getUserInteractionHtmlForMenu($this->user));
+        $this->templateEngine->addVariable("menuUserProductContent", User::getUserProductInteractionHtmlForMenu($this->user));
     }
 
 }
