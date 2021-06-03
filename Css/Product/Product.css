@@ -321,8 +321,7 @@ hr{
 }
 
 .singleProductWrapper div{
-    padding-left: 0;
-    padding-bottom: 0;
+    padding: 0;
 }
 
 .productPictures img{
