@@ -78,3 +78,32 @@
 .UserRemover form input:focus{
     outline: none;
 }
+
+.userColumn
+{
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.userColumnHeadline
+{
+    color: white;
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+
+.userAdministrationSearchDivision input
+{
+    background: none;
+    outline: none;
+    color: #72A7A5;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.userAdministrationSearchDivision input
+{
+    border-bottom: 1px solid white;
+}
