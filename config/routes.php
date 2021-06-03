@@ -125,5 +125,10 @@ return [
         'class'=>'ShoppingCartController',
         'action'=>'decreaseProductInShoppingCart',
         'route'=>'/shoppingcart/decreaseProductInShoppingCart'
+    ],
+    'ratedProducts' =>[
+        'class' => 'ProductController',
+        'action' => 'displayRatedProducts',
+        'route' => '/ratedProducts'
     ]
 ];

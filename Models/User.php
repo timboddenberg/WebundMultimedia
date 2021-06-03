@@ -110,6 +110,19 @@ class User
         return $html;
     }
 
+    public static function getUserProductInteractionHtmlForMenu(User $user)
+    {
+        $html = "";
+
+        if ($user->isLoggedIn())
+        {
+            $html = $html . "<div><a class='listButton' href='/WebundMultimedia/shoppingcart'>Warenkorb</a></div>";
+            $html = $html . "<div><a class='listButton' href='/WebundMultimedia/ratedProducts'>Von mir bewertet</a></div>";
+        }
+
+        return $html;
+    }
+
     public static function validateUserRequest(User $user)
     {
         $errorMessage = new ErrorMessages();
