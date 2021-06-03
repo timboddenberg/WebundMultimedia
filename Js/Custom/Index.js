@@ -50,7 +50,6 @@ $(document).ready(function (){
 
         if (refreshResults)
         {
-            console.log("deubg: refreshed!");
             $.ajax({
                 async: false,
                 data:{

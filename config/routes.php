@@ -135,5 +135,25 @@ return [
         'class' => 'ProductController',
         'action' => 'deleteRatedProduct',
         'route' => '/deleteRating'
+    ],
+    'userAdministration' => [
+        'class' => 'AccountController',
+        'action' => 'displayUserAdministration',
+        'route' => '/user/administration'
+    ],
+    'userAdministrationHtml' => [
+        'class' => 'AccountController',
+        'action' => 'getUserAdministrationColumnHtml',
+        'route' => '/user/administration/getAdministrationHtml'
+    ],
+    'deleteUserById' => [
+        'class' => 'AccountController',
+        'action' => 'removeUserById',
+        'route' => '/user/administration/removeUserById'
+    ],
+    'UpdateAdminStatusById' => [
+        'class' => 'AccountController',
+        'action' => 'updateUserAdminStatusById',
+        'route' => '/user/administration/updateUserAdminStatusById'
     ]
 ];

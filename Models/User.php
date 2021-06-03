@@ -5,9 +5,9 @@ require_once __DIR__ . "\..\Models\ErrorMessages.php";
 class User
 {
     private string $mail;
-    private string $name;
+    private string $lastName;
     private string $firstname;
-    private int $userID;
+    private int $userId;
     private bool $loggedIn = false;
     private bool $isAdmin = false;
 
@@ -20,31 +20,34 @@ class User
             $this->loggedIn = true;
     }
 
-    public function setUserID(int $id)
+    public function setUserId(int $id)
     {
-        $this->userID = $id;
-    }
-    public function setFirstName(String $fname)
-    {
-        $this->firstname = $fname;
-    }
-    public function setLastName(String $lname)
-    {
-        $this->name = $lname;
+        $this->userId = $id;
     }
 
-    public function getUserID(){
-        return $this->userID;
+    public function setFirstName(String $firstName)
+    {
+        $this->firstname = $firstName;
     }
 
-    public function getUsername()
+    public function setLastName(String $lastName)
     {
-        return $this->name;
+        $this->lastName = $lastName;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
     }
 
     public function getFirstName()
     {
         return $this->firstname;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 
     public function getUsernameGreetingString()
@@ -75,6 +78,11 @@ class User
         $this->isAdmin = $isAdmin;
     }
 
+    public function getUserCategory(): string
+    {
+        return $this->isAdmin() ? "Administrator" : "Benutzer";
+    }
+
     public static function EncryptPassword(string $password)
     {
         $salt1 = "qm&h*";
@@ -99,6 +107,8 @@ class User
         if ($user->isAdmin())
         {
             $html = $html . "<div><a href='/WebundMultimedia/product/administration' class='listButton'>Produktadministration</a></div>";
+            $html = $html . "<div><a href='/WebundMultimedia/user/administration' class='listButton'>Benutzeradministration</a></div>";
+
         }
 
         if ($user->isLoggedIn())
