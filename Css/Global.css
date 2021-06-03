@@ -310,3 +310,10 @@ body
 #nonvisibleid{
     visibility: hidden;
 }
+.shoppingCartItem{
+    margin-bottom: 10px;
+    border: white 2px solid;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
