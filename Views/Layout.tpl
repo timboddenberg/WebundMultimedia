@@ -100,7 +100,7 @@
                             <a class="listButton" href="/WebundMultimedia/allProducts/all">Alle Produkte</a>
                         </div>
                         <div>
-                            <a class="listButton" href="/WebundMultimedia/shoppingcart">Einkaufswagen</a>
+                            <a class="listButton" href="/WebundMultimedia/shoppingcart">Warenkorb</a>
                         </div>
                     </div>
                 </div>
