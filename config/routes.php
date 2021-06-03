@@ -130,5 +130,10 @@ return [
         'class' => 'ProductController',
         'action' => 'displayRatedProducts',
         'route' => '/ratedProducts'
+    ],
+    'deleteRating' =>[
+        'class' => 'ProductController',
+        'action' => 'deleteRatedProduct',
+        'route' => '/deleteRating'
     ]
 ];
