@@ -141,6 +141,7 @@ class User
         {
             $errorMessage->setErrorMessage("Bitte loggen Sie sich für diese Aktion ein.");
             header("Location: http://Localhost/WebundMultimedia/");
+            die();
         }
     }
 
