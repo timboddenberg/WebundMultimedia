@@ -404,3 +404,7 @@ hr{
 .decreaseButton:hover{
     background-color: #256866!important;
 }
+
+.shoppingCartDeleteButton:hover{
+    fill: #890000!important;
+}
