@@ -107,3 +107,100 @@
 {
     border-bottom: 1px solid white;
 }
+
+.userEditHeadline
+{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.userEditForm
+{
+    color: white;
+    width: 100%;
+    float: left;
+    height: 400px;
+}
+
+.userEditForm form input
+{
+    height: 40px;
+    background: transparent!important;
+    color: white;
+    border: 3px solid #72A7A5;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.userEditDetails
+{
+    float: left;
+    color: white;
+    height: 350px;
+    width: 100%;
+    padding-right: 0!important;
+}
+
+.passwordChange
+{
+    color: white;
+
+}
+
+#deleteAccountButton{
+    width: max-content;
+    text-decoration: none;
+    background-color: #ff5555;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+#deleteAccountButton:hover{
+    background-color: #890000;
+}
+
+#toStartButton{
+    width: 300px;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #72A7A5;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    transition: 0.2s;
+    text-align: center;
+}
+
+#toStartButton:hover{
+    background-color: #256866;
+}
+
+#toStartButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.2s;
+}
+
+#toStartButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.2s;
+}
+
+#toStartButton:hover span {
+    padding-right: 15px;
+}
+
+#toStartButton:hover span:after {
+    opacity: 1;
+    right: 0;
+}

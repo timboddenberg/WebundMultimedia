@@ -29,6 +29,7 @@ class AbstractController
         $this->generateUser();
         $this->assignErrorMessage();
         $this->generateContentForMenu();
+        $this->generateProfileLink();
     }
 
     private function generateUser()
@@ -39,6 +40,15 @@ class AbstractController
             $this->user = unserialize($this->request->SESSION("user"));
 
         $this->templateEngine->addVariable("usernameGreetingString", $this->user->getUsernameGreetingString());
+        if($this->user->isLoggedIn())
+        {
+            $this->templateEngine->addVariable("userMail", $this->user->getEmail());
+            $this->templateEngine->addVariable("userFirstName", $this->user->getFirstName());
+            $this->templateEngine->addVariable("userLastName", $this->user->getLastName());
+        }
+
+
+
     }
 
     private function assignErrorMessage()
@@ -60,6 +70,11 @@ class AbstractController
     {
         $this->templateEngine->addVariable("menuUserContent", User::getUserInteractionHtmlForMenu($this->user));
         $this->templateEngine->addVariable("menuUserProductContent", User::getUserProductInteractionHtmlForMenu($this->user));
+    }
+
+    private function generateProfileLink()
+    {
+        $this->templateEngine->addVariable("profileLink", User::getProfileLink($this->user));
     }
 
 }
