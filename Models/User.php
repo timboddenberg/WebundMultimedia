@@ -127,7 +127,7 @@ class User
         if ($user->isLoggedIn())
         {
             $html = $html . "<div><a class='listButton' href='/WebundMultimedia/shoppingcart'>Warenkorb</a></div>";
-            $html = $html . "<div><a class='listButton' href='/WebundMultimedia/ratedProducts'>Von mir bewertet</a></div>";
+            $html = $html . "<div><a class='listButton' href='/WebundMultimedia/ratedProducts'>Meine Bewertungen</a></div>";
         }
 
         return $html;
