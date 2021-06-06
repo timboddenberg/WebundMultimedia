@@ -227,4 +227,84 @@ class AccountController extends AbstractController
 
         header("Location: http://Localhost/WebundMultimedia/user/administration");
     }
+
+    public function displayUserEdit()
+    {
+        User::validateUserRequest($this->user);
+        $this->templateEngine->display("\Account\UserEdit.tpl");
+    }
+
+    public function performUserEdit(){
+
+        //check account from database
+        $userId = $this->request->SESSION('userID');
+        $query = "SELECT Benutzername, Vorname, Nachname FROM benutzer WHERE Id = '$userId'";
+        $result = $this->database->query($query);
+
+        //assign variables and check if an edit exists
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $username = $this->checkWhetherAnEditExits($this->request->POST("email"), $row["Benutzername"]);
+                $firstname = $this->checkWhetherAnEditExits($this->request->POST("firstname"), $row["Vorname"]);
+                $lastname = $this->checkWhetherAnEditExits($this->request->POST("lastname"), $row["Nachname"]);
+            }
+        }
+
+        //edit the account
+        $query = "UPDATE benutzer SET Benutzername='$username', Vorname='$firstname', Nachname='$lastname' WHERE Id='$userId'";
+        $this->database->query($query);
+
+        $this->setNewSession($userId);
+        header("Location: http://Localhost/WebundMultimedia/user/edit");
+        die();
+    }
+
+    private function setNewSession($userId){
+        $query = "SELECT * FROM benutzer WHERE Id = '" . $userId . "'";
+        $result = $this->database->query($query);
+        if ($result->num_rows > 0)
+        {
+            $row = $result->fetch_row();
+            $user = new User($row[1]);
+            $user->setUserId($row[0]);
+            $user->setFirstName($row[3]);
+            $user->setLastName($row[4]);
+            $user->setIsAdmin($row[5]);
+            $this->request->setSESSION("user",serialize($user));
+            $this->request->setSESSION('userID', $row[0]);
+        }
+    }
+
+    private function checkWhetherAnEditExits($newValue, $previousValue){
+        if($newValue != ""){
+            return $newValue;
+        }
+        else{
+            return $previousValue;
+        }
+    }
+
+    public function performPasswordChange(){
+        $userId = $this->request->SESSION('userID');
+        $oldPassword = $this->request->POST("oldpassword");
+        $newPassword = $this->request->POST("newpassword");
+        $newPasswordTwo = $this->request->POST("newpasswordtwo");
+
+        $query = "SELECT * FROM benutzer WHERE Id = '" . $userId . "'";
+        $result = $this->database->query($query);
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_row();
+
+            if (User::CheckPassword($oldPassword, $row[2]) and $newPassword == $newPasswordTwo) {
+                $encryptedPassword = User::EncryptPassword($newPassword);
+                $query = "UPDATE Benutzer SET Passwort = '$encryptedPassword' WHERE Id = '$userId'";
+                $this->database->query($query);
+            }
+            else{
+                $this->errorHandler->setErrorMessage("Bitte geben Sie die Passwörter richtig ein!");
+            }
+        }
+        header("Location: http://Localhost/WebundMultimedia/user/edit");
+        die();
+    }
 }

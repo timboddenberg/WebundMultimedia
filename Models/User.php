@@ -113,7 +113,7 @@ class User
 
         if ($user->isLoggedIn())
         {
-            $html = $html . "<div><a href='/WebundMultimedia/user/remove' class='listButton'>Account verwalten</a></div>";
+            $html = $html . "<div><a href='/WebundMultimedia/user/edit' class='listButton'>Account verwalten</a></div>";
             $html = $html . "<div><a href='/WebundMultimedia/user/logout/performLogout' class='listButton'>Ausloggen</a></div>";
         }
 
@@ -155,4 +155,20 @@ class User
             header("Location: http://Localhost/WebundMultimedia/");
         }
     }
+
+    public static function getProfileLink(User $user)
+    {
+        if ( ! $user->isLoggedIn())
+        {
+            $profileLink =
+                "/WebundMultimedia/user/login";
+        }
+        else
+        {
+            $profileLink =
+                "/WebundMultimedia/user/edit";
+        }
+        return $profileLink;
+    }
+
 }

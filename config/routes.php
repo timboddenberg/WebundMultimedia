@@ -156,6 +156,21 @@ return [
         'action' => 'updateUserAdminStatusById',
         'route' => '/user/administration/updateUserAdminStatusById'
     ],
+    'userEdit' => [
+        'class' => 'AccountController',
+        'action' => 'displayUserEdit',
+        'route' => '/user/edit'
+    ],
+    'performUserEdit' => [
+        'class' => 'AccountController',
+        'action' => 'performUserEdit',
+        'route' => '/user/performUserEdit'
+    ],
+    'performPasswordChange' => [
+        'class' => 'AccountController',
+        'action' => 'performPasswordChange',
+        'route' => '/user/performPasswordChange'
+    ],
     'purchaseProducts' => [
         'class' => 'ShoppingCartController',
         'action' => 'handlePurchase',
