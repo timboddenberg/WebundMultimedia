@@ -15,6 +15,6 @@
 <script>
     var button = document.getElementById("orderButton");
     button.onclick = function (){
-        location.assign('http://localhost/WebundMultimedia');
+        location.assign('http://localhost/WebundMultimedia/shoppingcart/purchaseProducts');
     }
 </script>

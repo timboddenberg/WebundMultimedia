@@ -155,5 +155,15 @@ return [
         'class' => 'AccountController',
         'action' => 'updateUserAdminStatusById',
         'route' => '/user/administration/updateUserAdminStatusById'
+    ],
+    'purchaseProducts' => [
+        'class' => 'ShoppingCartController',
+        'action' => 'handlePurchase',
+        'route' => '/shoppingcart/purchaseProducts'
+    ],
+    'displayOrderOverview' => [
+        'class' => 'ShoppingCartController',
+        'action' => 'displayOrderOverview',
+        'route' => '/orderOverview'
     ]
 ];

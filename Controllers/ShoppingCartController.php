@@ -176,5 +176,69 @@ class ShoppingCartController extends AbstractController
         die();
     }
 
+    //This method handles the purchase
+    public function handlePurchase(){
+        User::validateUserRequest($this->user);
+        $order = $this->shoppingCart->getShoppingCart();
+        foreach ($order as $orderItem){
+             $temp = $this->checkInventory($this->shoppingCart, $orderItem);
+             $userID = $this->request->SESSION("userID");
+             $productID = $orderItem->getId();
+             $amount = $orderItem->getAmount();
+             $dateTime = date('Y-m-d h:i:s a', time());
+
+             switch($temp){
+                 case 0:
+                     $this->errorHandler->setErrorMessage("Produkt ist nicht verfügbar: " . $orderItem->getName());
+                     break;
+                 case 1:
+                     $query = "UPDATE produkte SET Bestand = Bestand - ".$orderItem->getAmount(). " WHERE Id = " . $orderItem->getId();
+                     $this->database->query($query);
+                     $query = "INSERT INTO bestellungen VALUES ('','$userID', '$productID','$amount','$dateTime')";
+                     $this->database->query($query);
+                     break;
+                 case 2:
+                     $this->errorHandler->setErrorMessage("Bestellmenge reduziert von Produkt: " . $orderItem->getName());
+                     $query = "UPDATE produkte SET Bestand = Bestand - ".$orderItem->getAmount(). " WHERE Id = " . $orderItem->getId();
+                     $this->database->query($query);
+                     $query = "INSERT INTO bestellungen VALUES ('','$userID', '$productID','$amount','$dateTime')";
+                     $this->database->query($query);
+                     break;
+             }
+        }
+        $this->shoppingCart->clearShoppingCart();
+        $this->request->setSESSION("shoppingCart", serialize($this->shoppingCart));
+        header("Location: http://Localhost/WebundMultimedia/orderOverview");
+        die();
+    }
+
+    //This method checks the inventory
+    public function checkInventory($order, $orderItem){
+        $query = "SELECT * FROM produkte WHERE Id = " . $orderItem->getId();
+        $result = $this->database->query($query);
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                if($row["Bestand"] == 0){
+                    $order->deleteProduct($orderItem->getId());
+                    return 0;
+                }
+                if($orderItem->getAmount() > $row["Bestand"]){
+                    $orderItem->setAmount($row["Bestand"]);
+                    return 2;
+                }
+            }
+        }
+        return 1;
+    }
+
+    //This method displays the order overview
+    public function displayOrderOverview(){
+        $this->templateEngine->display("/Product/OrderOverview.tpl");
+    }
+
+
+
+
 
 }

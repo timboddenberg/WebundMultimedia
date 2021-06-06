@@ -74,5 +74,10 @@ class ShoppingCart
         return $this->shoppingCart;
     }
 
+    //This method clears the shoppingcart
+    public function clearShoppingCart(){
+        $this->shoppingCart = array();
+    }
+
 
 }
