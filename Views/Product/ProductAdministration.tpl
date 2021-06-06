@@ -13,7 +13,7 @@
 <div class="row productAdministrationContentWrapper">
 
 
-    <div class="col-md-6" style="border-right: 1px solid white">
+    <div class="col-md-6">
         <div id="triggerImageUpload">
             <div id="productImagePlaceholder">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
@@ -36,12 +36,9 @@
         </form>
     </div>
 
-    <div class="col-md-6" style=" border-bottom: 1px solid white">
+    <div class="col-md-6" style="border: 1px solid white; border-radius: 10px;">
         {$productList}
     </div>
 
 
 </div>
-<script src="/WebundMultimedia/Js/JQuery/JQuery.min.js"></script>
-<script src="/WebundMultimedia/Js/Bootstrap/bootstrap.min.js"></script>
-<script src="/WebundMultimedia/Js/Custom/ImagePreview.js"></script>
