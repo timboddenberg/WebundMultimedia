@@ -108,7 +108,7 @@ class User
         {
             $html = $html . "<div><a href='/WebundMultimedia/product/administration' class='listButton'>Produktadministration</a></div>";
             $html = $html . "<div><a href='/WebundMultimedia/user/administration' class='listButton'>Benutzeradministration</a></div>";
-
+            $html = $html . "<div><a href='/WebundMultimedia/activity/display' class='listButton'>Aktivitäts Log</a></div>";
         }
 
         if ($user->isLoggedIn())
