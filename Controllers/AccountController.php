@@ -174,31 +174,37 @@ class AccountController extends AbstractController
                     {
                         $html = $html .
                             "<div class='row userColumn'>
-                        <div class='col-md-3'>" .
-                            $user->getFirstName() . "
-                        </div>                   
-                        <div class='col-md-3'>" .
-                            $user->getLastName() . "
-                        </div>                   
-                        <div class='col-md-3'>" .
-                            $user->getUserCategory() . "
-                        </div>
-                        <div class='col-md-2'>
-                            <a href='/WebundMultimedia/user/administration/updateUserAdminStatusById?UserId=" . $user->getUserId() . "'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-shift-fill' viewBox='0 0 16 16'>
-                                    <path d='M7.27 2.047a1 1 0 0 1 1.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047z'/>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class='col-md-1'>
-                            <a href='/WebundMultimedia/user/administration/removeUserById?UserId=" . $user->getUserId() . "'>
-                                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash' viewBox='0 0 16 16'>
-                                    <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
-                                    <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
-                                </svg>
-                            </a>
-                        </div>
-                     </div>";
+                                <div class='col-md-3'>" .
+                                    $user->getFirstName() . "
+                                </div>                   
+                                <div class='col-md-3'>" .
+                                    $user->getLastName() . "
+                                </div>                   
+                                <div class='col-md-3'>" .
+                                    $user->getUserCategory() . "
+                                </div>
+                                <div class='col-md-2'>
+                                    <a class='userAdminRightsBtn' href='/WebundMultimedia/user/administration/updateUserAdminStatusById?UserId=" . $user->getUserId() . "'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-caret-up-fill' viewBox='0 0 16 16'>
+                                            <path d='m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z'/>
+                                        </svg>
+                                    </a>
+                                    <a class='userAdminRightsBtn' href='/WebundMultimedia/user/administration/removeUserAdminStatusById?UserId=" . $user->getUserId() . "'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-caret-down-fill' viewBox='0 0 16 16'>
+                                            <path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class='col-md-1'>
+                                    <a class='userAdminDeleteBtn' href='/WebundMultimedia/user/administration/removeUserById?UserId=" . $user->getUserId() . "'>
+                                        <svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='#ff3030' class='bi bi-trash' viewBox='0 0 16 16'>
+                                            <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'/>
+                                            <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>";
                     }
                 }
             }
@@ -223,6 +229,16 @@ class AccountController extends AbstractController
         $userId = $this->request->GET("UserId");
 
         $query = "UPDATE Benutzer SET Admin = 1 WHERE Id = '$userId'";
+        $this->database->query($query);
+
+        header("Location: http://Localhost/WebundMultimedia/user/administration");
+    }
+
+    public function removeUserAdminStatusById()
+    {
+        $userId = $this->request->GET("UserId");
+
+        $query = "UPDATE Benutzer SET Admin = 0 WHERE Id = '$userId'";
         $this->database->query($query);
 
         header("Location: http://Localhost/WebundMultimedia/user/administration");

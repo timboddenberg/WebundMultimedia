@@ -36,7 +36,7 @@
         </form>
     </div>
 
-    <div class="col-md-6" style="border: 1px solid white; border-radius: 10px;">
+    <div class="col-md-6 productAdminList">
         {$productList}
     </div>
 

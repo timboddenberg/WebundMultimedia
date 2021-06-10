@@ -62,8 +62,20 @@
     border-radius: 5px;
 }
 
+.productRemoveIcon a{
+    text-decoration: none;
+}
+
+.productRemoveIcon a svg{
+    margin-top: 15px;
+}
+
 .productRemoveIcon a svg:hover{
     fill: #890000;
+}
+
+.editProductButton a svg{
+    margin-top: 15px;
 }
 
 .editProductButton a svg:hover{
@@ -174,6 +186,7 @@
     border-width: 1.5px;
 }
 .productComments p{
+    font-size: 25px;
     padding-left: 2%;
     padding-top: 1%;
 }
@@ -341,6 +354,11 @@ hr{
     padding: 0;
 }
 
+.singleProductWrapper a{
+    padding: 0;
+}
+
+
 .productPictures img{
     height: 120px;
     width: 120px;
@@ -407,4 +425,65 @@ hr{
 
 .shoppingCartDeleteButton:hover{
     fill: #890000!important;
+}
+
+.productAdminList{
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.productPriceWrapper{
+    float: left;
+}
+
+.productAmountWrapper{
+    float: left;
+    text-align: center;
+    padding-right: 150px;
+}
+
+.inCartButtonWrapper{
+    float: left;
+    text-align: right;
+}
+
+.addCommentForm{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.addCommentForm p{
+    color: white;
+}
+
+.allProductsWrapper{
+    text-decoration:none
+}
+
+.ratedProductsDeleteButton{
+    float: left;
+    padding: 0;
+    margin-top: 5px;
+}
+
+#noRatedProductsMessage{
+    color: white;
+    text-align: center;
+}
+
+#ratedProductsListTrash{
+    text-decoration: none;
+    color: white;
+}
+
+#ratedProductsListTrash svg:hover{
+    fill: #ff3030;
+}
+
+#allProductsBestand{
+    text-align: center;
+}
+
+.headerText{
+    color: white;
 }

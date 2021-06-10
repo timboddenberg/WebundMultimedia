@@ -56,7 +56,7 @@
         </form>
     </div>
 
-    <div class="row" style="padding-left: 20px;">
+    <div class="row deleteAccountButtonWrapper">
         <a id="deleteAccountButton" href="/WebundMultimedia/user/remove">
             Account löschen
         </a>

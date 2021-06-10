@@ -43,13 +43,13 @@
         <hr>
         <div class="productDescription">{$Beschreibung}</div>
         <hr>
-        <div class="col-md-4" style="float: left;">
+        <div class="col-md-4 productPriceWrapper">
             <div class="productPrice">Preis: {$Preis} €</div>
         </div>
-        <div class="col-md-4" style="float: left; text-align: center; padding-right: 150px;">
+        <div class="col-md-4 productAmountWrapper">
             <div class="productAmount col-md-4">Bestand: {$Bestand}</div>
         </div>
-        <div class="col-md-4" style="float: left; text-align: right;">
+        <div class="col-md-4 inCartButtonWrapper">
             <button id="inCartButton" type="button"><span>In den Einkaufswagen!</span></button>
         </div>
 
@@ -70,7 +70,7 @@
     }
 </script>
 <div class="row productComments">
-    <p style="font-size: 25px">Kommentare</p>
+    <p>Kommentare</p>
     <div>
         <a id="newCommentButton" type="button" href="/WebundMultimedia/product/addComment?id={$Id}" ><span>Kommentar erstellen</span></a>
     </div>

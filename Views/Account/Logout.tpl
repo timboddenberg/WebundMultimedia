@@ -7,7 +7,6 @@
 </div>
 
 <div class="LogoutMessage">
-
-    <p style="font-size: 30px;">Sie wurden erfolgreich ausgeloggt!</p><br>
+    <p>Sie wurden erfolgreich ausgeloggt!</p><br>
     <a id="toStartButton" type="button" href="/WebundMultimedia"><span>Hier gehts zur Startseite</span></a>
 </div>

@@ -156,6 +156,11 @@ return [
         'action' => 'updateUserAdminStatusById',
         'route' => '/user/administration/updateUserAdminStatusById'
     ],
+    'RemoveAdminStatusById' => [
+        'class' => 'AccountController',
+        'action' => 'removeUserAdminStatusById',
+        'route' => '/user/administration/removeUserAdminStatusById'
+    ],
     'userEdit' => [
         'class' => 'AccountController',
         'action' => 'displayUserEdit',
