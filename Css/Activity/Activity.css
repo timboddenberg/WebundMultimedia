@@ -1,4 +1,4 @@
-.activityFilters div:not(:last-child)
+.activityFilters div:not(:last-child,.row)
 {
     border-right: 1px solid white;
     color: white;
