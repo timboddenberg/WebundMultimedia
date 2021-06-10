@@ -95,7 +95,7 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Produkte
-                        <hr style="width: 70%; margin-left: 15%;">
+                        <hr class="hrMenu">
                         <div>
                             <a class="listButton" href="/WebundMultimedia/allProducts/all">Alle Produkte</a>
                         </div>
@@ -105,7 +105,7 @@
                 <div class="col-md-6">
                     <div class="col-md-12 menuContentHeadline">
                         Benutzer
-                        <hr style="width: 70%; margin-left: 15%;">
+                        <hr class="hrMenu">
                         <div>
                             <a class="listButton" href="/WebundMultimedia" >Startseite</a>
                         </div>
