@@ -9,8 +9,8 @@
 </div>
 
 <div class="UserRemover">
-    <form class="" method="post" action="/WebundMultimedia/user/remove/perform">
-        <span style="color:white;">Account löschen</span><br><br>
+    <form method="post" action="/WebundMultimedia/user/remove/perform">
+        <span class="formSpan">Account löschen</span><br><br>
         <input type="password" name="password" placeholder="Passwort eingeben"><br>
         <input type="submit" value="Entfernen">
     </form>

@@ -206,7 +206,7 @@ class ShoppingCartController extends AbstractController
                      break;
              }
         }
-        $this->shoppingCart->clearShoppingCart();
+        $this->request->setSESSION("orderDone", "y");
         $this->request->setSESSION("shoppingCart", serialize($this->shoppingCart));
         header("Location: http://Localhost/WebundMultimedia/orderOverview");
         die();
@@ -234,8 +234,61 @@ class ShoppingCartController extends AbstractController
 
     //This method displays the order overview
     public function displayOrderOverview(){
+        $this->generateOrderOverviewHTML();
+        $this->shoppingCart->clearShoppingCart();
+        $this->request->setSESSION("shoppingCart", serialize($this->shoppingCart));
+        $this->request->setSESSION("orderDone", "n");
         $this->templateEngine->display("/Product/OrderOverview.tpl");
+
     }
+
+    //This method generates the html for the order overview
+    private function generateOrderOverviewHTML(){
+
+        $order = $this->shoppingCart->getShoppingCart();
+        $orderOverviewHTML = "";
+
+        if($this->request->SESSION("orderDone") == "y" && count($order) > 0){
+            $tempHTML = '
+            <div class="productAdministrationHeadlineWrapper row">
+                <div class="productAdministrationHeadline">
+                    <span>Vielen Dank für Ihren Einkauf!</span>
+                    <br>
+                    <br>
+                    <span>Bestellübersicht:</span>
+                </div>
+            </div>
+        ';
+            $orderOverviewHTML = $orderOverviewHTML . $tempHTML;
+            foreach ($order as $item){
+                $tempHTML = '
+                    <a href="/WebundMultimedia/product/'.$item->getId().'" style="text-decoration:none">
+                        <div class="row col-md-12 shoppingCartItem">
+                            <div class="productPictures col-md-4">
+                                <img src="'. $item->getPicture() .'">
+                            </div>
+                            <div class="col-md-4 productInfoText">
+                                <p>'. $item->getName().'</p>
+                            </div>
+                            <div class="col-md-4 productInfoText">
+                                <p>Menge: '. $item->getAmount().'</p>
+                            </div>               
+                    </div>
+                    </a>
+                    <hr>
+            ';
+                $orderOverviewHTML = $orderOverviewHTML . $tempHTML;
+            }
+            $this->templateEngine->addVariable("orderOverviewHTML", $orderOverviewHTML);
+        }
+        else{
+            header("Location: http://Localhost/WebundMultimedia");
+            die();
+        }
+    }
+
+
+
 
 
 

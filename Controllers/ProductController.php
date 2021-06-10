@@ -133,8 +133,8 @@ class ProductController extends AbstractController{
                             '. $product->getName() .'
                         </div>
                         <div class="productRemoveIcon col-md-3 right">
-                            <a href="/WebundMultimedia/product/delete?productID='. $product->getId() .'" style="text-decoration: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#FF2525FF" class="bi bi-trash" viewBox="0 0 16 16" style="margin-top: 15px;">
+                            <a href="/WebundMultimedia/product/delete?productID='. $product->getId() .'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#FF2525FF" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                 </svg>
@@ -142,7 +142,7 @@ class ProductController extends AbstractController{
                         </div>
                         <div class="editProductButton col-md-1 right">
                              <a href="/WebundMultimedia/product/edit?productID='.$product->getId().'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-pencil" viewBox="0 0 16 16" style="margin-top: 15px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-pencil" viewBox="0 0 16 16">
                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                 </svg>
                             </a>
@@ -172,7 +172,7 @@ class ProductController extends AbstractController{
 
             $tempHtml =
                 '   
-                    <a style="text-decoration:none" href="/WebundMultimedia/product/'.$productId.'">
+                    <a class="allProductsWrapper" href="/WebundMultimedia/product/'.$productId.'">
                         <div class="row singleProductWrapper">                        
                             <div class="col-md-2">
                                 <div class="productPictures">
@@ -196,7 +196,7 @@ class ProductController extends AbstractController{
                             </div>
                             <div class="col-md-3">
                                 <div class="productInfoText">
-                                    <p>Aktueller Bestand:<br>'.$amount.'</p>
+                                    <p id="allProductsBestand">Aktueller Bestand:<br>'.$amount.'</p>
                                 </div>
                             </div>
                         </div>
@@ -299,49 +299,40 @@ class ProductController extends AbstractController{
         $query = "SELECT * FROM produkte INNER JOIN bewertungen ON bewertungen.BenutzerID = '".$userId. "'AND bewertungen.ProductID = produkte.Id";
         $result = $this->database->query($query);
         $ratedProductsHtml = "";
-
         if($result->num_rows > 0)
         {
             while($row = $result->fetch_assoc())
             {
                 $tempHtml =
                     '   
-                        <div class="row col-md-12 singleProductWrapper" style="cursor: auto">
+                        <div class="allProductsWrapper" id="'.$row["ProductID"].'">
+                            <div class="row col-md-12 singleProductWrapper">                                
                                     <div class="productPictures col-md-2">
-                                        <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
-                                            <img src="' . $row["BildURL"] . '"/>
-                                        </a>                                        
+                                        <img src="' . $row["BildURL"] . '"/>                                       
                                     </div> 
                                     <div class="productInfoText col-md-2">
-                                        <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
-                                            <p>'.$row["Name"].'</p>
-                                        </a>
+                                        <p>'.$row["Name"].'</p>
                                     </div>
                                     <div class="productInfoText col-md-1">
-                                        <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
-                                            <p>'.$row["Preis"].'€</p>
-                                        </a>
+                                        <p>'.$row["Preis"].'€</p>
                                     </div>
                                     <div class="productInfoDescription col-md-4">
-                                        <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
-                                            <p>'.$row["Beschreibung"].'</p>
-                                        </a>
+                                        <p>'.$row["Beschreibung"].'</p>
                                     </div>
                                     <div class="productInfoText col-md-2">
-                                       <a href="/WebundMultimedia/product/'.$row["ProductID"].'" style="text-decoration: none; color: white;">
-                                            <p>Mein Rating:<br>'.$row["Rating"].'</p> 
-                                       </a>                                       
-                                    </div>
-                                <div class="col-md-1" style="float: left; padding: 0;">
-                                    <a href="/WebundMultimedia/deleteRating?id='.$row["ID"].'" style="text-decoration: none; color: white;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-trash" viewBox="0 0 16 16">                               
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                        </svg>
-                                    </a>
-                                </div>                             
-                             
-                        </div>                                   
+                                        <p>Mein Rating:<br>'.$row["Rating"].'</p>       
+                                    </div> 
+                                                                          
+                                    <div class="col-md-1 ratedProductsDeleteButton">
+                                        <a id="ratedProductsListTrash" href="/WebundMultimedia/deleteRating?id='.$row["ID"].'">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-trash" viewBox="0 0 16 16">                               
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </a>
+                                    </div>                                
+                            </div> 
+                        </div>                                                      
                     <hr>                
                 ';
 
@@ -350,7 +341,7 @@ class ProductController extends AbstractController{
             return $ratedProductsHtml;
         }
         else {
-            return "<p style='color: white; text-align: center;'>Bisher wurden keine Produkte von dir bewertet.</p>";
+            return "<p id='noRatedProductsMessage'>Bisher wurden keine Produkte von dir bewertet.</p>";
         }
 
     }

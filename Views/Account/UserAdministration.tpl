@@ -1,5 +1,5 @@
 <link href="/WebundMultimedia/Css/Account/Account.css" rel="stylesheet"/>
-
+<link href="/WebundMultimedia/Css/Product/Product.css" rel="stylesheet"/>
 <div class='row userColumnHeadline'>
     <div class='col-md-3'>
         Vorname
@@ -14,7 +14,7 @@
         Adminrechte
     </div>
     <div class='col-md-1'>
-        löschen
+        Löschen
     </div>
 </div>
 
@@ -29,6 +29,8 @@
         <input type="text" name="category">
     </div>
 </div>
+
+<br>
 
 <div id="userAdministrationUserColumns">
 

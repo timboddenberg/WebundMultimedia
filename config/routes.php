@@ -171,6 +171,11 @@ return [
         'action' => 'getActivityData',
         'route' => '/activity/getActivityData'
     ],
+    'RemoveAdminStatusById' => [
+        'class' => 'AccountController',
+        'action' => 'removeUserAdminStatusById',
+        'route' => '/user/administration/removeUserAdminStatusById'
+    ],
     'userEdit' => [
         'class' => 'AccountController',
         'action' => 'displayUserEdit',
