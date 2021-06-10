@@ -1,0 +1,31 @@
+.activityFilters div:not(:last-child)
+{
+    border-right: 1px solid white;
+    color: white;
+}
+
+#rangeValue
+{
+    text-align: center;
+}
+
+#productSelection
+{
+    display: none;
+}
+
+#submitActivityRequest
+{
+    color: white;
+    background: rgba(255,255,255,0.3);
+    border-radius: 6px;
+    padding: 5px;
+    margin-top: 22px;
+    height: fit-content;
+}
+
+#submitActivityRequest:hover
+{
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+}

@@ -156,6 +156,21 @@ return [
         'action' => 'updateUserAdminStatusById',
         'route' => '/user/administration/updateUserAdminStatusById'
     ],
+    'displayActivityOverview' => [
+        'class' => 'ActivityController',
+        'action' => 'displayActivityOverview',
+        'route' => '/activity/display'
+    ],
+    'getAllProductsAsOptions' => [
+        'class' => 'ActivityController',
+        'action' => 'getAllProductFromDatabaseAsOptions',
+        'route' => '/activity/getProductOptions'
+    ],
+    'getActivityData' => [
+        'class' => 'ActivityController',
+        'action' => 'getActivityData',
+        'route' => '/activity/getActivityData'
+    ],
     'userEdit' => [
         'class' => 'AccountController',
         'action' => 'displayUserEdit',
