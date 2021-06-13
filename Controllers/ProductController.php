@@ -356,5 +356,61 @@ class ProductController extends AbstractController{
         die();
     }
 
+    //This method display the orders from the user
+    public function displayOrders(){
+        User::validateUserRequest($this->user);
+        $this->templateEngine->addVariable("ordersHTML",$this->generateOrdersHTML());
+        $this->templateEngine->display("\product\Orders.tpl");
+    }
+
+    //This method generates the HTML of the orders from the user
+    public function generateOrdersHTML(){
+        $userId = $this->request->SESSION('userID');
+        $query = "SELECT * from produkte INNER JOIN bestellungen ON produkte.Id = bestellungen.ProduktId AND bestellungen.BenutzerId = '$userId'";
+        $result = $this->database->query($query);
+        $ordersHTML = "";
+
+        if($result->num_rows > 0)
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $tempHtml =
+                    '   
+                        <div class="allProductsWrapper" id="'.$row["ProduktId"].'">
+                            <div class="row col-md-12 singleProductWrapper">                                
+                                    <div class="productPictures col-md-2">
+                                        <img src="' . $row["BildURL"] . '"/>                                       
+                                    </div> 
+                                    <div class="productInfoText col-md-2">
+                                        <p>'.$row["Name"].'</p>
+                                    </div>
+                                    <div class="productInfoText col-md-1">
+                                        <p>'.$row["Preis"].'€</p>
+                                    </div>
+                                    <div class="productInfoDescription col-md-3">
+                                        <p>'.$row["Beschreibung"].'</p>
+                                    </div>
+                                    <div class="productInfoText col-md-2">
+                                        <p>Bestellmenge</p>
+                                        <p>'.$row["Menge"].'</p>
+                                    </div>
+                                    <div class="productInfoText col-md-2">
+                                        <p>Kaufdatum</p>
+                                        <p>'.$row["Datum"].'</p>
+                                    </div>              
+                            </div> 
+                        </div>                                                      
+                    <hr>                
+                ';
+
+                $ordersHTML = $ordersHTML . $tempHtml;
+            }
+            return $ordersHTML;
+        }
+        else {
+            return "<p id='noRatedProductsMessage'>Bisher wurden keine Produkte von dir gekauft.</p>";
+        }
+
+    }
 
 }
