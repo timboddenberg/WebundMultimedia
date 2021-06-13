@@ -374,6 +374,7 @@ class ProductController extends AbstractController{
         {
             while($row = $result->fetch_assoc())
             {
+                $date = strtotime($row["Datum"]);
                 $tempHtml =
                     '   
                         <div class="allProductsWrapper" id="'.$row["ProduktId"].'">
@@ -391,12 +392,12 @@ class ProductController extends AbstractController{
                                         <p>'.$row["Beschreibung"].'</p>
                                     </div>
                                     <div class="productInfoText col-md-2">
-                                        <p>Bestellmenge</p>
-                                        <p>'.$row["Menge"].'</p>
+                                        <p class="orderInfoText">Bestellmenge</p>
+                                        <p class="orderInfoText">'.$row["Menge"].'</p>
                                     </div>
                                     <div class="productInfoText col-md-2">
                                         <p>Kaufdatum</p>
-                                        <p>'.$row["Datum"].'</p>
+                                        <p>'.date("d.m.Y", $date).'</p>
                                     </div>              
                             </div> 
                         </div>                                                      
