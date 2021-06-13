@@ -248,10 +248,12 @@ hr{
 
 .productCommentUser p{
     margin-top: 0;
+    font-size: 20px;
 }
 
 .productCommentInhalt p{
     margin-bottom: 30px;
+    font-size: 15px;
 }
 
 #newCommentButton{
