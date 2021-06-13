@@ -200,5 +200,10 @@ return [
         'class' => 'ShoppingCartController',
         'action' => 'displayOrderOverview',
         'route' => '/orderOverview'
+    ],
+    'displayMyOrders' =>[
+        'class' => 'ProductController',
+        'action'=> 'displayOrders',
+        'route'=>'/orders'
     ]
 ];

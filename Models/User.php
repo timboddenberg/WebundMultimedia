@@ -128,6 +128,7 @@ class User
         {
             $html = $html . "<div><a class='listButton' href='/WebundMultimedia/shoppingcart'>Warenkorb</a></div>";
             $html = $html . "<div><a class='listButton' href='/WebundMultimedia/ratedProducts'>Meine Bewertungen</a></div>";
+            $html = $html . "<div><a class='listButton' href='/WebundMultimedia/orders'>Meine Bestellungen</a></div>";
         }
 
         return $html;
