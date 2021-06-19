@@ -20,7 +20,7 @@ class CommentFactory extends AbstractController
 
     private function getProductCommentsFromDatabase()
     {
-        $query = "SELECT * FROM kommentare WHERE ProductID = '" . $this->productId . "' ORDER BY ProductID DESC ";
+        $query = "SELECT * FROM kommentare WHERE ProduktId = '" . $this->productId . "' ORDER BY ProduktId DESC ";
         $result = $this->database->query($query);
         $productComments = array();
 
@@ -28,7 +28,7 @@ class CommentFactory extends AbstractController
         {
             while($row = $result->fetch_assoc())
             {
-                $productComments[] = new Comment($row["Id"],$row["Inhalt"],$row["ProductID"],$row["UserId"]);
+                $productComments[] = new Comment($row["Id"],$row["Inhalt"],$row["ProduktId"],$row["BenutzerId"]);
             }
         }
         return $productComments;
@@ -142,8 +142,8 @@ class CommentFactory extends AbstractController
     public function getAverageRating(): string
     {
 
-        $query = "SELECT (SUM(bewertungen.Rating) / (SELECT COUNT(*) FROM bewertungen WHERE ProductID = '$this->productId')) as Average 
-FROM bewertungen WHERE ProductID = '$this->productId'";
+        $query = "SELECT (SUM(bewertungen.bewertung) / (SELECT COUNT(*) FROM bewertungen WHERE ProduktId = '$this->productId')) as Average 
+FROM bewertungen WHERE ProduktId = '$this->productId'";
         $result = $this->database->query($query);
 
         if ($result->num_rows > 0)
@@ -165,7 +165,7 @@ FROM bewertungen WHERE ProductID = '$this->productId'";
 
     private function checkIfProductIsAlreadyRated($productId, $userId)
     {
-        $query = "SELECT * FROM bewertungen WHERE ProductID = '" . $productId . "' AND BenutzerID = '$userId'";
+        $query = "SELECT * FROM bewertungen WHERE ProduktId = '" . $productId . "' AND BenutzerId = '$userId'";
         $result = $this->database->query($query);
 
         return $result->num_rows > 0;

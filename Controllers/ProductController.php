@@ -9,6 +9,7 @@ require_once __DIR__ . "\..\Models\Rating.php";
 
 class ProductController extends AbstractController{
 
+    //This method adds product specific attributes, ratings and comments to the template engine and displays the product page
     public function displayProduct()
     {
         $productId = $this->request->SESSION("productId");
@@ -24,6 +25,7 @@ class ProductController extends AbstractController{
         }
     }
 
+    //This method assigns the product attributes to the template engine
     private function assignProductVariables(array $product)
     {
         foreach ($product as $key => $value)
@@ -32,6 +34,7 @@ class ProductController extends AbstractController{
         }
     }
 
+    //This method returns a product from the database using its id
     private function getProductFromDatabase(string $id)
     {
         $result = $this->database->query("SELECT * FROM produkte WHERE Id = " . $id);
@@ -48,6 +51,7 @@ class ProductController extends AbstractController{
         return $product;
     }
 
+    //This method displays the UI for creating a new comment if the user is logged in
     public function displayAddComment()
     {
         User::validateUserRequest($this->user);
@@ -57,6 +61,7 @@ class ProductController extends AbstractController{
         $this->templateEngine->display("\product\AddComment.tpl");
     }
 
+    //This method displays the product administration page if the user has admin rights
     public function displayProductAdministration()
     {
         User::validateAdminRequest($this->user);
@@ -65,6 +70,7 @@ class ProductController extends AbstractController{
         $this->templateEngine->display("/Product/ProductAdministration.tpl");
     }
 
+    //This method adds a new product to the database
     public function addProduct()
     {
         User::validateAdminRequest($this->user);
@@ -84,11 +90,13 @@ class ProductController extends AbstractController{
         die;
     }
 
+    //This method encodes an image file to a Base64 string and returns it
     private function generateBase64String($image)
     {
         return 'data:' . $image["type"] . ';base64, ' . base64_encode(file_get_contents($image["tmp_name"]));
     }
 
+    //This method removes a product from the database
     public function deleteProduct()
     {
         User::validateAdminRequest($this->user);
@@ -296,7 +304,7 @@ class ProductController extends AbstractController{
     public function generateHtmlRatedProducts()
     {
         $userId = $this->request->SESSION('userID');
-        $query = "SELECT * FROM produkte INNER JOIN bewertungen ON bewertungen.BenutzerID = '".$userId. "'AND bewertungen.ProductID = produkte.Id";
+        $query = "SELECT * FROM produkte INNER JOIN bewertungen ON bewertungen.BenutzerId = '".$userId. "'AND bewertungen.ProduktId = produkte.Id";
         $result = $this->database->query($query);
         $ratedProductsHtml = "";
         if($result->num_rows > 0)
@@ -305,7 +313,7 @@ class ProductController extends AbstractController{
             {
                 $tempHtml =
                     '   
-                        <div class="allProductsWrapper" id="'.$row["ProductID"].'">
+                        <div class="allProductsWrapper" id="'.$row["ProduktId"].'">
                             <div class="row col-md-12 singleProductWrapper">                                
                                     <div class="productPictures col-md-2">
                                         <img src="' . $row["BildURL"] . '"/>                                       
@@ -320,11 +328,11 @@ class ProductController extends AbstractController{
                                         <p>'.$row["Beschreibung"].'</p>
                                     </div>
                                     <div class="productInfoText col-md-2">
-                                        <p>Mein Rating:<br>'.$row["Rating"].'</p>       
+                                        <p>Mein Rating:<br>'.$row["Bewertung"].'</p>       
                                     </div> 
                                                                           
                                     <div class="col-md-1 ratedProductsDeleteButton">
-                                        <a id="ratedProductsListTrash" href="/WebundMultimedia/deleteRating?id='.$row["ID"].'">
+                                        <a id="ratedProductsListTrash" href="/WebundMultimedia/deleteRating?id='.$row["Id"].'">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-trash" viewBox="0 0 16 16">                               
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -350,7 +358,7 @@ class ProductController extends AbstractController{
 
         $userId = $this->request->SESSION('userID');
         $id = $this->request->GET("id");
-        $query = "DELETE FROM bewertungen WHERE ID='$id' AND BenutzerID='$userId'";
+        $query = "DELETE FROM bewertungen WHERE Id='$id' AND BenutzerId='$userId'";
         $this->database->query($query);
         header("Location: http://Localhost/WebundMultimedia/ratedProducts");
         die();
