@@ -108,6 +108,7 @@ class ProductController extends AbstractController{
         die;
     }
 
+    //This method returns an array with all products in the database
     private function getAllProducts()
     {
         $query = "SELECT * FROM produkte ";
@@ -124,6 +125,7 @@ class ProductController extends AbstractController{
         return $products;
     }
 
+    //This method generates the HTML code for the single product view
     private function generateHtmlProduct()
     {
         $products = $this->getAllProducts();
@@ -164,6 +166,7 @@ class ProductController extends AbstractController{
         return $html;
     }
 
+    //This method generates the HTML code for the products overview
     private function generateHtmlAllProducts()
     {
         $productList = $this->getAllProducts();
@@ -217,6 +220,7 @@ class ProductController extends AbstractController{
         return $productsHtml;
     }
 
+    //This method displays the view for all products
     public function displayAllProducts()
     {
             $this->templateEngine->addVariable("allProducts", $this->generateHtmlAllProducts());
@@ -269,6 +273,7 @@ class ProductController extends AbstractController{
         die();
     }
 
+    //This method removes a product from the database
     public function rateProduct()
     {
         $productId = $this->request->SESSION("productId");
@@ -277,6 +282,7 @@ class ProductController extends AbstractController{
         $commentFactory->rateProduct();
     }
 
+    //This method adds a new comment to the database using the comment factory
     public function addComment()
     {
         $productId = $this->request->SESSION("productId");
@@ -295,12 +301,14 @@ class ProductController extends AbstractController{
         }
     }
 
+    //This method displays the view for rated products
     public function displayRatedProducts()
     {
         $this->templateEngine->addVariable("ratedProducts",$this->generateHtmlRatedProducts());
         $this->templateEngine->display("/Product/RatedProducts.tpl");
     }
 
+    //This method generates the HTML code for the rated products view
     public function generateHtmlRatedProducts()
     {
         $userId = $this->request->SESSION('userID');
@@ -354,6 +362,7 @@ class ProductController extends AbstractController{
 
     }
 
+    //This method deletes a rating from the database
     public function deleteRatedProduct(){
 
         $userId = $this->request->SESSION('userID');
