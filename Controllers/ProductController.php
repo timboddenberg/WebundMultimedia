@@ -384,7 +384,7 @@ class ProductController extends AbstractController{
             {
                 $date = strtotime($row["Datum"]);
                 $tempHtml =
-                    '   
+                    '<a class="allProductsWrapper" href="/WebundMultimedia/product/'.$row["ProduktId"].'">      
                         <div class="allProductsWrapper" id="'.$row["ProduktId"].'">
                             <div class="row col-md-12 singleProductWrapper">                                
                                     <div class="productPictures col-md-2">
@@ -408,7 +408,8 @@ class ProductController extends AbstractController{
                                         <p>'.date("d.m.Y", $date).'</p>
                                     </div>              
                             </div> 
-                        </div>                                                      
+                        </div>
+                    </a>                                                      
                     <hr>                
                 ';
 
