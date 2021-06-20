@@ -5,13 +5,11 @@ require_once __DIR__ . "\..\Models\Comment.php";
 require_once __DIR__ . "\..\Models\User.php";
 require_once __DIR__ . "\..\Models\Rating.php";
 
-// Factory für das Bewertungs-/Kommentarsystem
 class CommentFactory extends AbstractController
 {
     private array $comments;
     private int $productId;
 
-    // Konstruktor der Comment factory
     public function __construct($productId)
     {
         parent::__construct();
