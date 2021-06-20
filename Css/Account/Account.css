@@ -103,18 +103,13 @@
     font-size: 25px;
 }
 
-.userAdministrationSearchDivision input
+.userColumnHeadline input
 {
     background: none;
     outline: none;
     color: #72A7A5;
     border: none;
     border-bottom: 1px solid rgba(255,255,255,0.3);
-}
-
-.userAdministrationSearchDivision input
-{
-    border-bottom: 1px solid white;
 }
 
 .userEditHeadline
@@ -141,7 +136,7 @@
     border: 3px solid #72A7A5;
     margin-bottom: 8px;
     border-radius: 5px;
-    width: 300px;
+    width: 100%;
 }
 
 .userEditDetails

@@ -2,31 +2,34 @@
 <link href="/WebundMultimedia/Css/Product/Product.css" rel="stylesheet"/>
 <div class='row userColumnHeadline'>
     <div class='col-md-3'>
-        Vorname
+        <div class="row">
+            Vorname
+        </div>
+        <div class="row">
+            <input type="text" name="firstName">
+        </div>
     </div>
     <div class='col-md-3'>
-        Nachname
+        <div class="row">
+            Nachname
+        </div>
+        <div class="row">
+            <input type="text" name="lastName">
+        </div>
     </div>
     <div class='col-md-3'>
-        Benutzerkategorie
+        <div class="row">
+            Benutzerkategorie
+        </div>
+        <div class="row">
+            <input type="text" name="category">
+        </div>
     </div>
     <div class='col-md-2'>
         Adminrechte
     </div>
     <div class='col-md-1'>
         Löschen
-    </div>
-</div>
-
-<div class="row userAdministrationSearchDivision">
-    <div class='col-md-3'>
-        <input type="text" name="firstName">
-    </div>
-    <div class='col-md-3'>
-        <input type="text" name="lastName">
-    </div>
-    <div class='col-md-3'>
-        <input type="text" name="category">
     </div>
 </div>
 
@@ -40,7 +43,7 @@
 
     getUserAdministrationHtml()
 
-    $(".userAdministrationSearchDivision input").on("input",function (){
+    $(".userColumnHeadline input").on("input",function (){
 
         getUserAdministrationHtml();
 

@@ -17,6 +17,8 @@ body
 
 .navBar-wrapper
 {
+    background: black;
+    z-index: 3;
     height: 80px;
     position: fixed;
     left:0;
@@ -144,7 +146,7 @@ body
     top: 0;
     height: 100%;
     background: rgba(49, 46, 46,0.9);
-    z-index: 1;
+    z-index: 4;
     transition: width 0.5s ease-in-out;
     overflow: hidden;
 }
@@ -375,4 +377,67 @@ body
 .hrMenu{
     width: 70%;
     margin-left: 15%;
+}
+
+@media (max-width: 1000px) {
+    .listButton
+    {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 770px) {
+    .listButton
+    {
+        font-size: 20px;
+    }
+
+    .menuContent
+    {
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 700px)
+{
+    .social-media-buttons
+    {
+        display:none;
+    }
+
+    .topBarSeperatorRight
+    {
+        display:none;
+    }
+
+    .shoppingCartButton
+    {
+        right: 0;
+    }
+
+    .searchbar input[type="text"]
+    {
+        margin-left: 13px;
+        width: 100px;
+        transition: width 0.1s ease-in-out;
+    }
+
+    .searchbar input[type="text"]:focus
+    {
+        width: 120px;
+        transition: width 0.1s ease-in-out;
+    }
+
+    .listButton
+    {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 550px)
+{
+    .searchbar
+    {
+        display: none;
+    }
 }

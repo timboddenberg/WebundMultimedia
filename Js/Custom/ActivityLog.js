@@ -73,7 +73,18 @@ function drawActivity(valueInformation, columns)
         var elementWidth = (i+1)*columnWidth;
         var elementHeight = height - valueInformation[i] * stepValue
         canvas.lineTo(elementWidth, elementHeight);
-        canvas.strokeText(valueInformation[i], elementWidth, elementHeight);
+
+        console.log(elementHeight,parseInt(height));
+
+        if (elementHeight === 0)
+        {
+            canvas.strokeText(valueInformation[i], elementWidth, elementHeight + 20);
+        }
+        else
+            {
+                canvas.strokeText(valueInformation[i], elementWidth, elementHeight);
+            }
+
     }
 
     canvas.stroke();
@@ -103,7 +114,6 @@ function getStepValue(valueArray, height)
             highestInt = valueArray[i];
     }
 
-    console.log(highestInt);
     return height/highestInt;
 }
 
