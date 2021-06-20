@@ -19,6 +19,7 @@ class AbstractController
 
     protected ErrorMessages $errorHandler;
 
+    // This is the constructor of the abstract controller
     public function __construct()
     {
         $this->templateEngine = new TemplateEngine();
@@ -32,6 +33,7 @@ class AbstractController
         $this->generateProfileLink();
     }
 
+    // This method adds an user to the session
     private function generateUser()
     {
         if ($this->request->SESSION("user") == "")
@@ -51,6 +53,7 @@ class AbstractController
 
     }
 
+    // This method adds an error message to the template engine and shows it in the view
     private function assignErrorMessage()
     {
         $errorMessageHtml = "";
@@ -66,12 +69,14 @@ class AbstractController
         $this->errorHandler->unsetMessages();
     }
 
+    // This method adds the user specific content to the template engine
     private function generateContentForMenu()
     {
         $this->templateEngine->addVariable("menuUserContent", User::getUserInteractionHtmlForMenu($this->user));
         $this->templateEngine->addVariable("menuUserProductContent", User::getUserProductInteractionHtmlForMenu($this->user));
     }
 
+    // This method adds the profile link to the template engine
     private function generateProfileLink()
     {
         $this->templateEngine->addVariable("profileLink", User::getProfileLink($this->user));
