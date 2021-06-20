@@ -2,15 +2,15 @@
 <link href="/WebundMultimedia/Css/Bootstrap/bootstrap.min.css" rel="stylesheet"/>
 <link href="/WebundMultimedia/Css/Bootstrap/bootstrap-theme.min.css" rel="stylesheet"/>
 <link href="/WebundMultimedia/Css/Global.css" rel="stylesheet"/>
+<link href="/WebundMultimedia/Css/Product/Product.css" rel="stylesheet"/>
 
-<div class="userEditHeadlineWrapper row">
-    <div class="userEditHeadline">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-person" viewBox="0 0 16 16">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-        </svg>
-        <span>Accountverwaltung</span>
-    </div>
-</div>
+<h1 class="headerText">
+    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="white" class="bi bi-person headerLogo" viewBox="0 0 16 16">
+        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+    </svg>
+    Accountverwaltung
+</h1>
+<hr>
 <br>
 <div class="row">
     <div class="col-md-4 userEditDetails">
@@ -33,11 +33,11 @@
         <hr>
         <form action="/WebundMultimedia/user/performUserEdit" method="post">
             <input type="email" name="email" placeholder="Neue E-Mail Adresse" >
-            <hr>
+            <br><br>
             <input type="text" name="firstname" placeholder="Neuer Vorname" >
-            <hr>
+            <br><br>
             <input type="text" name="lastname" placeholder="Neuer Nachname" >
-            <hr>
+            <br><br>
             <input type="submit" value="Informationen aktualisieren"><br>
         </form>
     </div>
@@ -47,11 +47,11 @@
         <hr>
         <form action="/WebundMultimedia/user/performPasswordChange" method="post">
             <input type="text" name="oldpassword" placeholder="Altes Passwort" required>
-            <hr>
+            <br><br>
             <input type="text" name="newpassword" placeholder="Neues Passwort" required>
-            <hr>
+            <br><br>
             <input type="text" name="newpasswordtwo" placeholder="Neues Passwort erneut eingeben" required>
-            <hr>
+            <br><br>
             <input type="submit" value="Passwort aktualisieren"><br>
         </form>
     </div>

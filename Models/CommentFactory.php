@@ -11,6 +11,7 @@ class CommentFactory extends AbstractController
     private array $comments;
     private int $productId;
 
+    // Konstruktor der Comment factory
     public function __construct($productId)
     {
         parent::__construct();
@@ -18,6 +19,7 @@ class CommentFactory extends AbstractController
         $this->comments = $this->getProductCommentsFromDatabase();
     }
 
+    // This method returns the comments of the current product
     private function getProductCommentsFromDatabase()
     {
         $query = "SELECT * FROM kommentare WHERE ProduktId = '" . $this->productId . "' ORDER BY ProduktId DESC ";
@@ -34,6 +36,7 @@ class CommentFactory extends AbstractController
         return $productComments;
     }
 
+    // This method generates the HTML code for the product comments
     public function generateHtmlProductComments()
     {
         $productComments = $this->getProductCommentsFromDatabase();
@@ -90,6 +93,7 @@ class CommentFactory extends AbstractController
         return $CommentsHtml;
     }
 
+    // This method adds a new comment to the database
     public function addComment()
     {
         User::validateUserRequest($this->user);
@@ -105,6 +109,7 @@ class CommentFactory extends AbstractController
         die();
     }
 
+    // This method adds a new rating of a product to the database
     public function rateProduct()
     {
         User::validateUserRequest($this->user);
@@ -131,6 +136,7 @@ class CommentFactory extends AbstractController
         die;
     }
 
+    // This method checks if the user has already bought the product
     public function productAlreadyBought($userId){
         $productId = $this->request->SESSION("productId");
         $query = "SELECT * FROM bestellungen WHERE BenutzerId = '$userId' AND ProduktId = '$productId'";
@@ -139,6 +145,7 @@ class CommentFactory extends AbstractController
         return($result->num_rows > 0);
     }
 
+    // This method calculates the average rating for a product
     public function getAverageRating(): string
     {
 
@@ -163,6 +170,7 @@ FROM bewertungen WHERE ProduktId = '$this->productId'";
 
     }
 
+    // This method checks if the user has already rated the product
     private function checkIfProductIsAlreadyRated($productId, $userId)
     {
         $query = "SELECT * FROM bewertungen WHERE ProduktId = '" . $productId . "' AND BenutzerId = '$userId'";

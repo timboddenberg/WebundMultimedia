@@ -16,18 +16,19 @@ class AccountController extends AbstractController
         $this->templateEngine->display("\Account\UserRemover.tpl");
     }
 
+    // This method displays the login view
     public function displayLogin()
     {
         $this->templateEngine->display("\Account\Login.tpl");
     }
 
+    // This method displays the logout view
     public function displayLogout()
     {
         $this->templateEngine->display("\Account\Logout.tpl");
     }
-    /*
-     * Method runs the logout and clears user and userID keys in the session
-     */
+
+    // Method runs the logout and clears user and userID keys in the session
     public function performLogout()
     {
         User::validateUserRequest($this->user);
@@ -36,12 +37,14 @@ class AccountController extends AbstractController
 
         header("Location: http://Localhost/WebundMultimedia/user/logout");
     }
+
+    // This method displays the registration view
     public function displayRegister()
     {
         $this->templateEngine->display("\Account\Registration.tpl");
     }
 
-
+    // This method creates a new user object and adds it to the session if the password and username are correct
     public function performLogin()
     {
         $query = "SELECT * FROM benutzer WHERE Benutzername = '" . $_POST["username"] . "'";
@@ -77,6 +80,7 @@ class AccountController extends AbstractController
         }
     }
 
+    // This method adds a new user to the database
     public function register()
     {
         if (!$this->validateAccountCreation())
@@ -96,6 +100,7 @@ class AccountController extends AbstractController
         die;
     }
 
+    // This method checks wether the username is already in the database
     private function validateAccountCreation()
     {
         $query = "SELECT * FROM benutzer WHERE Benutzername = '" . $this->request->POST("username") . "'";
@@ -110,9 +115,7 @@ class AccountController extends AbstractController
             return true;
     }
 
-    /*
-     * This method removes a user from the database
-     */
+    // This method removes an user from the database
     public function performRemove()
     {
         User::validateUserRequest($this->user);
@@ -129,6 +132,7 @@ class AccountController extends AbstractController
         header("Location: http://Localhost/WebundMultimedia/");
     }
 
+    // This method creates an array with all users from the database and displays the user administration view
     public function displayUserAdministration()
     {
         User::validateAdminRequest($this->user);
@@ -155,6 +159,7 @@ class AccountController extends AbstractController
         $this->templateEngine->display("\Account\UserAdministration.tpl");
     }
 
+    // This method generates the HTML code for the user administration and considers the search terms
     public function getUserAdministrationColumnHtml()
     {
         $firstNameSearchTerm = $this->request->GET("firstNameSearchTerm");
@@ -214,6 +219,7 @@ class AccountController extends AbstractController
 
     }
 
+    // This method removes an user from the database using its id
     public function removeUserById()
     {
         $userId = $this->request->GET("UserId");
@@ -224,6 +230,7 @@ class AccountController extends AbstractController
         header("Location: http://Localhost/WebundMultimedia/user/administration");
     }
 
+    // This method changes the admin status of an user to 1
     public function updateUserAdminStatusById()
     {
         $userId = $this->request->GET("UserId");
@@ -234,6 +241,7 @@ class AccountController extends AbstractController
         header("Location: http://Localhost/WebundMultimedia/user/administration");
     }
 
+    // This method changes the admin status of an user to 0
     public function removeUserAdminStatusById()
     {
         $userId = $this->request->GET("UserId");
@@ -244,12 +252,14 @@ class AccountController extends AbstractController
         header("Location: http://Localhost/WebundMultimedia/user/administration");
     }
 
+    // This method displays the user edit view
     public function displayUserEdit()
     {
         User::validateUserRequest($this->user);
         $this->templateEngine->display("\Account\UserEdit.tpl");
     }
 
+    // This method updates the user information in the database
     public function performUserEdit(){
 
         //check account from database
@@ -275,6 +285,7 @@ class AccountController extends AbstractController
         die();
     }
 
+    // This method sets a new session with the current user
     private function setNewSession($userId){
         $query = "SELECT * FROM benutzer WHERE Id = '" . $userId . "'";
         $result = $this->database->query($query);
@@ -291,6 +302,7 @@ class AccountController extends AbstractController
         }
     }
 
+    // This method checks if an edit was made
     private function checkWhetherAnEditExits($newValue, $previousValue){
         if($newValue != ""){
             return $newValue;
@@ -300,6 +312,7 @@ class AccountController extends AbstractController
         }
     }
 
+    // This method updates the users password in the database if the passwords got entered correctly
     public function performPasswordChange(){
         $userId = $this->request->SESSION('userID');
         $oldPassword = $this->request->POST("oldpassword");

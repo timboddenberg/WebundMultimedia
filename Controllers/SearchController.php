@@ -4,6 +4,7 @@ require_once __DIR__ . "\..\Models\Product.php";
 
 class SearchController extends AbstractController
 {
+    // This method searches for products in the database and adds them to an array
     function search()
     {
         $searchTerm = $this->request->GET("searchTerm");

@@ -83,6 +83,7 @@ class User
         return $this->isAdmin() ? "Administrator" : "Benutzer";
     }
 
+    // This method encrypts the password with a hash algorithm
     public static function EncryptPassword(string $password)
     {
         $salt1 = "qm&h*";
@@ -91,6 +92,7 @@ class User
         return hash('ripemd128', "$salt1$password$salt2");
     }
 
+    // This method checks if the password is correct
     public static function CheckPassword(string $formPassword, string $password)
     {
         $salt1 = "qm&h*";
@@ -100,6 +102,7 @@ class User
         return $formPassword == trim($password);
     }
 
+    // This method generates the HTML code for the admin specific menu
     public static function getUserInteractionHtmlForMenu(User $user)
     {
         $html = "";
@@ -120,6 +123,7 @@ class User
         return $html;
     }
 
+    // This method generates the HTML code for the user specific menu
     public static function getUserProductInteractionHtmlForMenu(User $user)
     {
         $html = "";
@@ -134,6 +138,7 @@ class User
         return $html;
     }
 
+    // This method checks if the user is logged in and returns an error message if not
     public static function validateUserRequest(User $user)
     {
         $errorMessage = new ErrorMessages();
@@ -146,6 +151,7 @@ class User
         }
     }
 
+    // This method checks whether the user has got admin rights and returns an error message if not
     public static function validateAdminRequest(User $user)
     {
         $errorMessage = new ErrorMessages();
@@ -157,6 +163,7 @@ class User
         }
     }
 
+    // This method generates the profile link if the user is logged in or not
     public static function getProfileLink(User $user)
     {
         if ( ! $user->isLoggedIn())
