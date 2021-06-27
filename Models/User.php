@@ -78,6 +78,7 @@ class User
         $this->isAdmin = $isAdmin;
     }
 
+    // This method returns the users category, Admin or User
     public function getUserCategory(): string
     {
         return $this->isAdmin() ? "Administrator" : "Benutzer";

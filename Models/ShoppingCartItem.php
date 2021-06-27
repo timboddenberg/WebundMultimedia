@@ -3,7 +3,7 @@
 
 class ShoppingCartItem
 /*
- * This class is the template for the shoppingitem
+ * This class is the template for the shoppingcartitem
  */
 {
     private string $id;

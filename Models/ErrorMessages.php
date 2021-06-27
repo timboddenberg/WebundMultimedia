@@ -30,7 +30,7 @@ class ErrorMessages
         $this->requestEngine->setSESSION("errorHandler",serialize($this));
     }
 
-    // This method returns a bool value if the error message is empty or not
+    // This method returns a bool value whether the error message is empty or not
     public function errorOccurred(): bool
     {
         return ! empty($this->errorMessage);
